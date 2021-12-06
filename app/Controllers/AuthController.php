@@ -9,14 +9,16 @@ class AuthController extends BaseController
 {
 
     protected $auth;
-
     protected $config;
-
     protected $session;
+    protected $razorKey;
+    protected $razorSecret;
 
     public function __construct()
     {
         $this->session = service('session');
+        $this->razorKey = env('testrazorkey');
+        $this->razorSecret = env('testrazorsecret');
     }
 
     public function login()
@@ -24,12 +26,10 @@ class AuthController extends BaseController
         echo  view('template/header');
         echo  view('template/login');
         echo  view('template/script');
-        //return view('template/header');
     }
 
     public function loginProceed()
     {
-        //helper('auth');
         $rules = [
             'login'         => 'required|min_length[5]|max_length[100]|',
             'password'      => 'required|min_length[6]|max_length[20]',
@@ -50,7 +50,7 @@ class AuthController extends BaseController
 
                 if ($user['status'] > 0){
                     $this->attamptLogin($user,$user['id']);
-                    return  redirect()->route('backend.dashboard');
+                    return  redirect()->route('login_redirect');
                 }
                 return redirect()->back()->withInput()->with('error','Access Denied ! Approval Pending');
             }
@@ -81,14 +81,21 @@ class AuthController extends BaseController
     }
     public function register()
     {
+        $key = $this->razorKey;
+        $secret = $this->razorSecret;
         echo  view('template/header');
-        echo  view('template/register');
+        echo  view('template/register',compact('key','secret'));
         echo  view('template/script');
     }
 
     public function store()
     {
+        $input = $this->request->getVar();
+        foreach ($input as $key=>$input_value){
+            $k_Data[] = $key;
+        }
 
+        dd($input,$k_Data);
         helper(['form']);
         $rules = [
             'name'          => 'required|min_length[4]|max_length[50]',
@@ -122,8 +129,12 @@ class AuthController extends BaseController
                 'photo'         => $photo->getName(),
                 'address'       => $this->request->getVar('address'),
                 'address_proof' => $address_proof->getName(),
+                'already_paid' => $this->request->getVar('already_paid'),
             ];
-            $userModel->save($data);
+            $user_get = $userModel->save($data);
+
+            $userDetails = $userModel->where('email',$this->request->getVar('email'))->first();
+            $userId = $userDetails['id'];
 
             return redirect()->route('login')->with('success','Registration Successfully please wait for President Approval');
         }else{
@@ -137,12 +148,17 @@ class AuthController extends BaseController
         $pass = str_replace(' ','_',$name).'@'.substr($mobile, 0, 3);
         return $pass;
     }
-
-
     public function makeUsername($email)
     {
         $username = explode('@',$email);
         return $username['0'];
+    }
+    public function paymentView()
+    {
+
+        echo  view('template/header');
+        echo view('template/register_payment');
+        echo  view('template/script');
     }
 
 }

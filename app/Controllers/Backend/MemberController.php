@@ -26,64 +26,66 @@ class MemberController extends BaseController
         return view('pages/backend/member/index', compact('users', 'pager'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        //public/uploads
-        $id = $this->request->getGet('id');
-        if ($id) {
-            $postModel = new Users();
-            $user = $postModel->where('id', $id)->first();
-            return view('pages/backend/member/edit', compact('user'));
+        $postModel = new Users();
+        $user = $postModel->where('id', $id)->first();
+        $description = '';
+        if ($user['description'] && $this->isJson($user['description'])){
+            $description = implode(' \n ',json_decode($user['description'],true));
         }
-        return redirect()->back()->with('error', 'please select a post');
-
+        return view('pages/backend/member/edit', compact('user','description'));
     }
 
-    public function update()
+    public function update($id)
     {
-        $id = $this->request->getVar('user_id');
-        if ($id) {
-            $userModel = new Users();
-            $user = $userModel->where('id',$id)->first();
-            $rules = $this->valid($id);
-            if ($this->validate($rules)) {
-                $username = $this->makeUsername($this->request->getVar('email'));
-                $password = $this->makePassword($this->request->getVar('name'), $this->request->getVar('mobile'));
-                $photo = $this->request->getFile('photo');
-                if ($photo->isValid() && !$photo->hasMoved()) {
-                    $photo->move(ROOTPATH . 'public/uploads');
-                    $photo_name = $photo->getName();
-                }else{
-                    $photo_name =$user['photo'];
-                }
-                $address_proof = $this->request->getFile('address_proof');
-                if ($address_proof->isValid() && !$address_proof->hasMoved()) {
-                    $address_proof->move(ROOTPATH . 'public/uploads');
-                    $address_proof_name = $address_proof->getName();
-                }else{
-                    $address_proof_name =$user['address_proof'];
-                }
-                $data = [
-                    'name' => $this->request->getVar('name'),
-                    'role' => 1,
-                    'username' => $username,
-                    'email' => $this->request->getVar('email'),
-                    'mobile' => $this->request->getVar('mobile'),
-                    'password_hash' => Password::hash($password),
-                    'password' => $password,
-                    'photo' => $photo_name,
-                    'address' => $this->request->getVar('address'),
-                    'address_proof' => $address_proof_name,
-                ];
-                $userModel->update($id, $data);
-
-                return redirect()->route('backend.member.index')->with('success', 'Member update successfully');
-            } else {
-                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        $userModel = new Users();
+        $user = $userModel->where('id',$id)->first();
+        $rules = $this->valid($id);
+        if ($this->validate($rules)) {
+            $username = $this->makeUsername($this->request->getVar('email'));
+            $password = $this->makePassword($this->request->getVar('name'), $this->request->getVar('mobile'));
+            $photo = $this->request->getFile('photo');
+            $status = $user['status'];
+            if (session('logged_in')['auth']['role']==0){
+                $status = $this->request->getVar('status');
             }
+            if ($photo->isValid() && !$photo->hasMoved()) {
+                $photo->move(ROOTPATH . 'public/uploads');
+                $photo_name = $photo->getName();
+            }else{
+                $photo_name =$user['photo'];
+            }
+            $address_proof = $this->request->getFile('address_proof');
+            if ($address_proof->isValid() && !$address_proof->hasMoved()) {
+                $address_proof->move(ROOTPATH . 'public/uploads');
+                $address_proof_name = $address_proof->getName();
+            }else{
+                $address_proof_name =$user['address_proof'];
+            }
+            $description[] = $this->request->getVar('description');
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'role' => 1,
+                'username' => $username,
+                'email' => $this->request->getVar('email'),
+                'mobile' => $this->request->getVar('mobile'),
+                'password_hash' => Password::hash($password),
+                'password' => $password,
+                'photo' => $photo_name,
+                'address' => $this->request->getVar('address'),
+                'description' => json_encode($description),
+                'status' => $status,
+                'address_proof' => $address_proof_name,
+            ];
+            $update = $userModel->update($id, $data);
+            if (session('logged_in')&& session('logged_in')['auth']['id'] == $this->current_route()){
+                return redirect()->back()->with('success', 'Profile update successfully');
+            }
+            return redirect()->route('backend.member.index')->with('success', 'Member update successfully');
+        }else{
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
-        return redirect()->back()->with('error','Please select a member');
-
     }
 
     public function valid($id)
@@ -112,5 +114,70 @@ class MemberController extends BaseController
         return $username['0'];
     }
 
+    function isJson($string)
+    {
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
+    }
+
+    public function delete($id)
+    {
+        dd($id);
+    }
+
+    public function sendmail()
+    {
+        $to = 'sahilyadav8884@gmail.com';
+        $subject = 'you are approved';
+        $this->send_approve_mail($to,$subject);
+
+        return 'success';
+    }
+
+    public function send_approve_mail($to,$subject,$message_data=null)
+    {
+        $email = \Config\Services::email();
+        $message = view('email/approve_mail',compact('message_data'));
+        $email->setTo($to);
+        $email->setFrom('sahilyadav.inwave@gmail.com', 'Contact Email');
+        $email->setSubject($subject);
+        $email->setMessage($message);
+
+        if ($email->send()) {
+            $response = true;
+        }
+        else
+        {
+            $data = $email->printDebugger(['headers']);
+            $response =false;
+        }
+    }
+
+    public function email()
+    {
+        return view('email/approve_mail.php');
+    }
+    public function current_route()
+    {
+        $urls = explode('/',current_url());
+        return end($urls);
+    }
+
+    public function status()
+    {
+        $id = $this->request->getVar('status_member_id');
+        if ($id){
+            $userModel = new Users();
+            $user = $userModel->where('id',$id)->first();
+            $description = $userModel->userDescription($id,$this->request->getVar('description'));
+            $data = [
+                'status' => $this->request->getVar('status'),
+                'description' => $description,
+            ];
+            $update = $userModel->update($id, $data);
+            return redirect()->back()->with('success','member Status Update');
+        }
+        return redirect()->back()->with('error','member not found');
+    }
 
 }

@@ -69,15 +69,11 @@ class PostController extends BaseController
         return redirect()->back()->withInput()->with('errors',$this->validator->getErrors());
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $id = $this->request->getGet('id');
-        if ($id){
-            $postModel = new Posts();
-            $post = $postModel->getpost('id',$id);
-            return view('pages/backend/post/edit',compact('post'));
-        }
-        return redirect()->back()->with('error','please select a post');
+        $postModel = new Posts();
+        $post = $postModel->getpost('id',$id);
+        return view('pages/backend/post/edit',compact('post'));
     }
 
     public function postRoule()
@@ -95,46 +91,38 @@ class PostController extends BaseController
         ];
         return $data;
     }
-    public function update()
+    public function update($id)
     {
-        $id = $this->request->getVar('post_id');
-        if ($id){
-            $rules = $this->postRoule();
-            if($this->validate($rules)){
-                $media = $this->request->getFile('media');
-                if ($media && !$media->hasMoved()){
-                    $media->move(WRITEPATH . 'uploads');
-                }
-                $postModal = new Posts();
-                //$post = $postModal->getpost('id',$id);
-                $data = [
-                    'title'      => $this->request->getVar('title'),
-                    'slug'      => str_replace(' ','_',$this->request->getVar('slug')),
-                    'category'      => $this->request->getVar('category'),
-                    'tag'      => $this->request->getVar('tag'),
-                    'publish_date'      => $this->request->getVar('publish_date'),
-                    'publish_time'      => $this->request->getVar('publish_time'),
-                    'description'      => $this->request->getVar('description'),
-                    'media'      => $media ?$media->getName():'',
-                    'status'      => $this->request->getVar('status'),
-                ];
-                $postModal->update($id,$data);
-                return redirect()->route('backend.post.index')->with('success','Post updated successfully');
+        $rules = $this->postRoule();
+        if($this->validate($rules)){
+            $media = $this->request->getFile('media');
+            if ($media && !$media->hasMoved()){
+                $media->move(ROOTPATH . 'public/uploads');
             }
-            return redirect()->back()->withInput()->with('errors',$this->validator->getErrors());
+            $postModal = new Posts();
+            //$post = $postModal->getpost('id',$id);
+            $data = [
+                'title'      => $this->request->getVar('title'),
+                'slug'      => str_replace(' ','_',$this->request->getVar('slug')),
+                'category'      => $this->request->getVar('category'),
+                'tag'      => $this->request->getVar('tag'),
+                'publish_date'      => $this->request->getVar('publish_date'),
+                'publish_time'      => $this->request->getVar('publish_time'),
+                'description'      => $this->request->getVar('description'),
+                'media'      => $media ?$media->getName():'',
+                'status'      => $this->request->getVar('status'),
+            ];
+            $postModal->update($id,$data);
+            return redirect()->route('backend.post.index')->with('success','Post updated successfully');
         }
-        return redirect()->route('backend.post.index')->with('success','please select a Post');
+        return redirect()->back()->withInput()->with('errors',$this->validator->getErrors());
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $id = $this->request->getGet('id');
-        if ($id){
-            $postModel = new Posts();
-            $post = $postModel->where('id',$id)->delete();
-            return redirect()->back()->with('success','post deleted successfully');
-        }
-        return redirect()->back()->with('error','please select a post');
+        $postModel = new Posts();
+        $post = $postModel->where('id',$id)->delete();
+        return redirect()->back()->with('success','post deleted successfully');
     }
 
 }

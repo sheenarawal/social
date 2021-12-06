@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use mysql_xdevapi\Session;
-
 class Home extends BaseController
 {
     function __construct() {
@@ -23,12 +21,11 @@ class Home extends BaseController
     }
     public function about()
     {
-        return redirect()->route('register');
-        /*echo  view('template/header');
+        echo  view('template/header');
         echo  view('template/navbar');
         echo  view('pages/about');
         echo  view('template/footer');
-        echo  view('template/script');*/
+        echo  view('template/script');
     }
     public function faq()
     {

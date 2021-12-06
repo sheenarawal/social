@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Posts extends Migration
+class CalendarUpdate extends Migration
 {
     public function up()
     {
@@ -13,36 +13,40 @@ class Posts extends Migration
                 'type' => 'INT',
                 'auto_increment' => true
             ],
+            'type' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'start_date' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'start_time' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'end_date' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'end_time' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
             'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-            ],
-            'slug' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-            ],
-            'category' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'tag' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => true,
-            ],
-            'publish_date' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
                 'null' => false,
             ],
-            'publish_time' => [
+            'file' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-            ],
-            'media' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-                'null'=>true
+                'null' => true,
             ],
             'description' => [
                 'type' => 'TEXT',
@@ -58,11 +62,11 @@ class Posts extends Migration
             'updated_at datetime default null on update current_timestamp'
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('posts');
+        $this->forge->createTable('calendar_updates');
     }
 
     public function down()
     {
-        $this->forge->dropTable('posts');
+        $this->forge->dropTable('calendar_updates');
     }
 }

@@ -100,7 +100,12 @@
                 </div>
 
                 <div class="header_right_buttons display_table_cell text-right hidden-xs">
-                    <a href="index-2.html#appointment" class="theme_button color1 two_lines bottommargin_0">Donate Now!</a>
+                    <?php if (session('logged_in')):?>
+                        <a href="<?= route_to('backend.dashboard')?>" class="theme_button color1 two_lines bottommargin_0">Dashboard</a>
+                    <?php else:?>
+                    <a href="<?= route_to('login')?>" class="theme_button color1 two_lines bottommargin_0">Login</a>
+                    <a href="<?= route_to('register')?>" class="theme_button color1 two_lines bottommargin_0">Signup</a>
+                    <?php endif;?>
                 </div>
             </div>
         </div>

@@ -13,7 +13,13 @@ class ContactAdmin extends Migration
                 'type' => 'INT',
                 'auto_increment' => true
             ],
-            'user_id' => [
+            'send_to' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => false,
+                'default' => '1',
+            ],
+            'send_by' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
                 'null' => false,

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Users extends Migration
+class Profile extends Migration
 {
     public function up()
     {
@@ -13,61 +13,81 @@ class Users extends Migration
                 'type' => 'INT',
                 'auto_increment' => true
             ],
-            'role' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-                'null' => false,
-                'default' => '1',
-            ],
-            'username' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-                'null' => false,
-            ],
-            'name' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-                'null' => false,
-            ],
-            'email' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-                'null' => false,
-                'unique' => true
-            ],
-            'mobile' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => false,
-                'unique' => true
-            ],
-            'password_hash' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => false,
-            ],
-            'password' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => false,
-            ],
-            'photo' => [
-                'type' => 'VARCHAR',
+            'user_id' => [
+                'type' => 'user_id',
                 'constraint' => '190',
             ],
-            'address' => [
+            'user_ps' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-            ],
-            'address_proof' => [
-                'type' => 'VARCHAR',
-                'constraint' => '190',
-            ],
-            'description' => [
-                'type' => 'TEXT',
                 'null' => true,
             ],
-            'already_paid' => [
+            'guardian' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'district' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'state' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'pin' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'land_mark' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null'=>true
+            ],
+            'dob' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null'=>true
+            ],
+            'age' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'sex' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'qualification' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'curricular_activities' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'blood_group' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'occupation' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'other_society' => [
+                'type' => 'VARCHAR',
+                'constraint' => '190',
+                'null' => true,
+            ],
+            'introduced_by' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
                 'null' => true,
@@ -82,11 +102,11 @@ class Users extends Migration
             'updated_at datetime default null on update current_timestamp'
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('users');
+        $this->forge->createTable('profile');
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('profile');
     }
 }

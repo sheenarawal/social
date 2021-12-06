@@ -17,7 +17,7 @@ class Posts extends Model
     protected $protectFields    = true;*/
     protected $allowedFields    = [
         'title','slug','category','tag','publish_date','publish_time',
-        'description','media','status',
+        'description','media','status','created_at','deleted_at',
     ];
     //protected $returnType = 'App\Entities\User';
     // Dates

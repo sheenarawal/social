@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Posts extends Migration
+class Events extends Migration
 {
     public function up()
     {
@@ -21,7 +21,7 @@ class Posts extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '190',
             ],
-            'category' => [
+            'location' => [
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ],
@@ -58,11 +58,11 @@ class Posts extends Migration
             'updated_at datetime default null on update current_timestamp'
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('posts');
+        $this->forge->createTable('events');
     }
 
     public function down()
     {
-        $this->forge->dropTable('posts');
+        $this->forge->dropTable('events');
     }
 }

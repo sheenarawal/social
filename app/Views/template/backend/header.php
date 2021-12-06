@@ -37,51 +37,46 @@
 </head>
 
 <body class="admin">
-<!--[if lt IE 9]>
-<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="highlight">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
 
 <div class="preloader">
     <div class="preloader_image"></div>
 </div>
 
-<!-- search modal -->
-<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">
-				<i class="rt-icon2-cross2"></i>
-			</span>
-    </button>
-    <div class="widget widget_search">
-        <form method="get" class="searchform search-form form-inline" action="https://html.modernwebtemplates.com/social-activism/">
-            <div class="form-group">
-                <input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input">
+<?php if (session('error')):?>
+    <div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-danger">Error ! </h4>
+                    <h5><?= session('error') ?></h5>
+                </div>
             </div>
-            <button type="submit" class="theme_button">Search</button>
-        </form>
+        </div>
     </div>
-</div>
+<?php endif;?>
 
-<!-- Unyson messages modal -->
+<?php if (session('success')):?>
 <div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
-    <div class="fw-messages-wrap ls with_padding">
-        <!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
-        <!--
-    <ul class="list-unstyled">
-        <li>Message To User</li>
-    </ul>
-    -->
-
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-success">Success ! </h4>
+                <h5><?= session('success') ?></h5>
+            </div>
+        </div>
     </div>
 </div>
 <!-- eof .modal -->
+<?php endif;?>
 
 <!-- Unyson messages modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="admin_contact_modal">
     <!-- <div class="ls with_padding"> -->
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <form class="with_padding contact-form" method="post" action="https://html.modernwebtemplates.com/social-activism/">
+            <form class="with_padding contact-form" method="post" action="">
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>Contact Admin</h3>
@@ -102,7 +97,6 @@
                     </div>
 
                     <div class="col-sm-12">
-
                         <div class="contact-form-message">
                             <label for="message">Message</label>
                             <textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
@@ -137,10 +131,18 @@
     <!-- eof #box_wrapper -->
 </div>
 
+<a class="side-button side-contact-button" data-target="#admin_contact_modal" href="#admin_contact_modal" data-toggle="modal" role="button">
+    <i class="fa fa-envelope"></i>
+</a>
+
 <?= view('template/backend/script') ?>
 
 <?= $this->renderSection('backend_script') ?>
-
+<script>
+    $(document).ready(function () {
+        $('#messages_modal').modal('show')
+    })
+</script>
 </body>
 
 

@@ -34,18 +34,18 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="">
+                                <a href="<?= route_to('backend.profile')?>">
                                     <i class="fa fa-user"></i>
                                     Profile
                                 </a>
                             </li>
-                            <li>
+                            <li class="<?= route_to('payment.view')?>">
                                 <a href="">
                                     <i class="fa fa-edit"></i>
                                     Edit Profile
                                 </a>
                             </li>
-                            <li>
+                            <li class="hidden">
                                 <a href="">
                                     <i class="fa fa-envelope-o"></i>
                                     Inbox
@@ -76,50 +76,147 @@
                 </ul>
 
                 <h3 class="dark_bg_color">Pages</h3>
+
                 <ul class="menu-click">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-file-text"></i>
-                            Posts
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="<?= route_to('backend.post.index') ?>">
-                                    Posts List
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= route_to('backend.post.create') ?>">
-                                    Create Post
-                                </a>
-                            </li>
+                    <?php if ($auth['role'] == 0): ?>
 
-                        </ul>
-                    </li>
-                    <?php if ($auth['role']==1): ?>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            Member
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="<?=route_to('backend.member.index')?>">
-                                    Member List
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                Member
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?=route_to('backend.member.index')?>">
+                                        Member List
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-file-text"></i>
+                                Posts
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?= route_to('backend.post.index') ?>">
+                                        Posts List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= route_to('backend.post.create') ?>">
+                                        Create Post
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+                                Notice
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?=route_to('backend.query.index','notice')?>">
+                                        Notices
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?=route_to('backend.query.create','notice')?>">
+                                        Single Notice
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-comment"></i>
+                                Events
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?=route_to('backend.event.index')?>">
+                                        Events
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?=route_to('backend.event.create')?>">
+                                        Single Event
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-comment"></i>
+                                FAQ
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?=route_to('backend.faq.index')?>">
+                                        FAQs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?=route_to('backend.faq.create')?>">
+                                        Single FAQ
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                Calendar
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?=route_to('backend.calendar.view')?>">
+                                        View Calendar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?=route_to('backend.calendar.index')?>">
+                                        Calendar Updates
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?=route_to('backend.calendar.create')?>">
+                                        Single Calendar
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     <?php else:?>
-                    <li>
-                        <a href="<?=route_to('backend.member.edit').'?id='.$auth['id'] ?>">
-                            <i class="fa fa-th-large"></i>
-                            Member
-                        </a>
+                        <li>
+                            <a href="<?=route_to('backend.profile') ?>">
+                                <i class="fa fa-users"></i>
+                                Member
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-comment"></i>
+                                Query / Complaint
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?=route_to('backend.query.index','query')?>">
+                                        Queries
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?=route_to('backend.query.create','query')?>">
+                                        Single Query
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif;?>
 
-                    </li>
-                    <?php endif?>
-                    <li>
+                    <li class="hidden">
                         <a href="#">
                             <i class="fa fa-comment"></i>
                             Comments
@@ -137,16 +234,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="admin_faq.html">
-                            <i class="fa fa-support"></i>
-                            FAQ
-                        </a>
-                    </li>
+
                 </ul>
 
-                <h3 class="dark_bg_color">UI Elements</h3>
-                <ul class="menu-click">
+                <h3 class="dark_bg_color hidden">UI Elements</h3>
+                <ul class="menu-click hidden">
                     <li>
                         <a href="admin_tables.html">
                             <i class="fa fa-table"></i>
@@ -169,7 +261,7 @@
             </nav>
             <!-- eof main side nav -->
 
-            <div class="with_padding grey text-center">
+            <div class="with_padding grey text-center hidden">
                 10GB of
                 <strong>250GB</strong> Free
             </div>

@@ -41,9 +41,7 @@
             </div>
         </div>
         <!-- .row -->
-
-
-        <form class="form-horizontal" action="<?=route_to('backend.member.update')?>" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="<?=route_to('backend.member.update',$user['id'])?>" method="post" enctype="multipart/form-data">
 
             <div class="row">
                 <div class="col-md-8">
@@ -113,7 +111,7 @@
                         <div class="row form-group <?php if(session('errors.description')) : ?> has-error<?php endif ?>">
                             <label class="col-lg-3 control-label" for="description">Member content: </label>
                             <div class="col-lg-9">
-                                <textarea rows="8" class="form-control" name="description" id="description"><?=esc($user['description'])?></textarea>
+                                <textarea rows="8" class="form-control" name="description" id="description"><?=esc($description)?></textarea>
                                 <?php if(session('errors.description')) { ?>
                                     <div class='text-danger'>
                                         <?= session('errors.description') ?>
@@ -162,7 +160,7 @@
                             <?php }?>
                         </div>
 
-                        <?php if ($auth['role']==1):?>
+                        <?php if ($auth['role']==0):?>
                         <div class="row">
                             <label class="col-lg-3 control-label">Status: </label>
                             <div class="col-lg-9">

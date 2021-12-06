@@ -13,25 +13,6 @@
             </div>
             <!-- .col-* -->
             <div class="col-md-6 ">
-
-                <?php if (session('success')) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">×</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <strong>Well done!</strong><?= session('success') ?>
-                    </div>
-                <?php } ?>
-                <?php if (session('error')) { ?>
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">×</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <strong>Error!</strong><?= session('error') ?>
-                    </div>
-                <?php } ?>
                 <span class="dashboard-daterangepicker hidden">
                     <i class="fa fa-calendar"></i>
                     <span></span>
@@ -140,7 +121,7 @@
                                 </td>
                                 <td class="media-middle">
                                     <h5>
-                                        <a href="<?=route_to('backend.post.edit').'?id='.$data['id'] ?>">
+                                        <a href="<?=route_to('backend.post.edit',$data['id']) ?>">
                                             <?= $data['title']?>
                                         </a>
                                     </h5>
@@ -162,9 +143,9 @@
                                 </td>
                                 <td>
                                     <div class="dropdown">
-                                        <a class="btn btn-link " href="<?=route_to('backend.post.edit').'?id='.$data['id'] ?>">
+                                        <a class="btn btn-link " href="<?=route_to('backend.post.edit',$data['id']) ?>">
                                             <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i></a>
-                                        <a class="btn btn-link " href="<?=route_to('backend.post.delete').'?id='.$data['id'] ?>">
+                                        <a class="btn btn-link " href="<?=route_to('backend.post.delete',$data['id']) ?>">
                                             <i class="fa fa-trash-o " aria-hidden="true"></i></a>
                                     </div>
                                 </td>

@@ -49,7 +49,7 @@ class CommentController extends BaseController
             $post_model = new Posts;
             $comment_for = $post_model->getpost('id',$id);
         }else{
-            $comment_for = '1';
+            $comment_for['title'] = '1';
         }
         return  view('pages/backend/comment/create',compact('type','comment_for'));
     }
@@ -58,11 +58,6 @@ class CommentController extends BaseController
     {
         $rules = $this->postRoule();
         if($this->validate($rules)){
-
-            $media = $this->request->getFile('media');
-            if ($media && !$media->hasMoved()){
-                $media->move(WRITEPATH . 'uploads');
-            }
             $postModal = new Comments();
             $data = [
                 'title'       => $this->request->getVar('title'),
@@ -95,9 +90,9 @@ class CommentController extends BaseController
     {
         $data = [
             'title'       => 'required|min_length[5]|max_length[190]|',
-            'type'        => 'required|min_length[5]|max_length[190]|',
-            'model_id'        => 'required|min_length[5]|max_length[190]|',
-            'rating'      => 'required|min_length[5]|max_length[190]|',
+            'type'        => 'required',
+            'model_id'        => 'required',
+            'rating'      => 'required',
             'description' => 'required|min_length[5]',
             'status'      => 'required',
         ];

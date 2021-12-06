@@ -36,7 +36,7 @@
         </div>
         <!-- .row -->
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="<?=route_to('backend.comment.store')?>" method="post">
 
             <div class="row">
                 <div class="col-md-12">
@@ -67,7 +67,7 @@
                         <div class="row form-group <?php if(session('errors.title')) : ?> has-error<?php endif ?>">
                             <label class="col-lg-3 control-label" for="title">Comment title: </label>
                             <div class="col-lg-9">
-                                <input id="title" type="text" class="form-control" name="title" value="">
+                                <input id="title" type="text" class="form-control" name="title" value="<?=old('title')?>">
                                 <?php if(session('errors.title')) { ?>
                                     <div class='text-danger'>
                                         <?= session('errors.title') ?>
@@ -94,15 +94,9 @@
                             <div class="col-lg-9">
                                 <select class="form-control" id="rating" name="rating">
                                     <option selected=""></option>
-                                    <option>5.00</option>
-                                    <option>4.50</option>
-                                    <option>4.00</option>
-                                    <option>3.50</option>
-                                    <option>3.00</option>
-                                    <option>2.50</option>
-                                    <option>2.00</option>
-                                    <option>1.50</option>
-                                    <option>1.00</option>
+                                    <?php for ($i=0.5;$i <= 5.5;$i += 0.5   ):?>
+                                    <option value="5"><?= floatval($i)?></option>
+                                    <?php endfor;?>
                                 </select>
                                 <?php if(session('errors.rating')) { ?>
                                     <div class='text-danger'>

@@ -1,0 +1,287 @@
+<?= $this->extend('template/backend/header') ?>
+<?= $this->section('backend_content') ?>
+<?php $auth = session()->get('logged_in')['auth']; ?>
+<section class="ls with_bottom_border">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ol class="breadcrumb darklinks">
+                    <li>
+                        <a href="<?= route_to('backend.dashboard')?>>">Dashboard</a>
+                    </li>
+                    <li class="active"><?=ucfirst($type)?> Edit</li>
+                </ol>
+            </div>
+            <!-- .col-* -->
+            <div class="col-md-6 text-md-right hidden">
+                <span class="dashboard-daterangepicker">
+                    <i class="fa fa-calendar"></i>
+                    <span></span>
+                    <i class="caret"></i>
+                </span>
+            </div>
+            <!-- .col-* -->
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+</section>
+
+<section class="ls section_padding_top_50 section_padding_bottom_50 columns_padding_10">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Edit <?=ucfirst($type)?>
+                    <small class="pull-right">
+                        <a href="#">
+                            <i class="fa fa-comments"></i> Post discussion</a>
+                    </small>
+                </h3>
+            </div>
+        </div>
+        <!-- .row -->
+        <form class="form-horizontal" action="<?=route_to('backend.query.update',$type,$id)?>" method="post" enctype="multipart/form-data">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="with_border with_padding">
+                        <h4><?=ucfirst($type)?> text
+                            <span class="pull-right">
+                                <button type="submit" class="theme_button small_button">Update <?=ucfirst($type)?></button>
+                            </span>
+                        </h4>
+                        <hr>
+                        <input name="query_id" type="hidden" value="<?=esc($query['id'])?>">
+                        <?php if ($auth['role'] == 0):?>
+                            <div class="row form-group <?php if(session('errors.send_to')) : ?> has-error<?php endif ?>">
+                                <label class="col-lg-3 control-label" for="send_to">Send to:</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" id="send_to" name="send_to">
+                                        <option selected=""></option>
+                                        <?php foreach ($users as $data):?>
+                                            <option value="<?= $data['id'] ?>" <?= $data['id'] == $query['send_to']?'selected':'' ?>><?= $data['name'] ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?php if(session('errors.send_to')) { ?>
+                                        <div class='text-danger'>
+                                            <?= session('errors.send_to') ?>
+                                        </div>
+                                    <?php }?>
+                                    <input name="name" type="hidden" value="<?=esc($auth['name'])?>">
+                                </div>
+                            </div>
+                        <?php else:?>
+                            <input type="hidden" class="form-control" id="name" name="send_to" value="1">
+                            <div class="row form-group <?php if(session('errors.title')) : ?> has-error<?php endif ?>">
+                                <label class="col-lg-3 control-label" for="name">Name: </label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="name" name="name" value="<?= esc($query['name']) ?>" required>
+                                    <?php if(session('errors.name')) { ?>
+                                        <div class='text-danger'>
+                                            <?= session('errors.name') ?>
+                                        </div>
+                                    <?php }?>
+                                </div>
+                            </div>
+                        <?php endif;?>
+
+                        <div class="row form-group <?php if(session('errors.subject')) : ?> has-error<?php endif ?>">
+                            <label class="col-lg-3 control-label" for="subject">Subject: </label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="subject" name="subject" value="<?= esc($query['subject'])?>" required>
+                                <?php if(session('errors.subject')) { ?>
+                                    <div class='text-danger'>
+                                        <?= session('errors.subject') ?>
+                                    </div>
+                                <?php }?>
+                            </div>
+                        </div>
+
+                        <div class="row form-group <?php if(session('errors.description')) : ?> has-error<?php endif ?>">
+                            <label class="col-lg-3 control-label" for="description">Content: </label>
+                            <div class="col-lg-9">
+                                <textarea rows="8" class="form-control" name="description" id="description"><?= esc($query['description'])?></textarea>
+                                <?php if(session('errors.description')) { ?>
+                                    <div class='text-danger'>
+                                        <?= session('errors.description') ?>
+                                    </div>
+                                <?php }?>
+                            </div>
+                        </div>
+                        <?php if ($auth['role'] == 0):?>
+                            <div class="row">
+                                <label class="col-lg-3 control-label">Status: </label>
+                                <div class="col-lg-9">
+                                    <label class="radio-inline" for="status1">
+                                        <input type="radio" name="status" id="status1" value="0" checked=""> Pending
+                                    </label>
+                                    <label class="radio-inline" for="status2">
+                                        <input type="radio" name="status" id="status2" value="1" checked> Approve
+                                    </label>
+                                    <label class="radio-inline text-success" for="status2">
+                                        (<?=esc($query['status']== 0?'Pending':'Approved') ?>)
+                                    </label>
+                                    <?php if(session('errors.status')) { ?>
+                                        <div class='text-danger'>
+                                            <?= session('errors.status') ?>
+                                        </div>
+                                    <?php }?>
+                                </div>
+                            </div>
+                        <?php endif;?>
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="theme_button wide_button">Update <?=ucfirst($type)?></button>
+                                <a href="<?=route_to('backend.post.index','query') ?>" class="theme_button inverse wide_button">Cancel</a>
+                            </div>
+                        </div>
+                        <!-- .row  -->
+                    </div>
+                    <!-- .with_border -->
+                </div>
+
+
+            </div>
+            <!-- .row  -->
+
+
+        </form>
+        <?php if ($auth['role'] == 0):?>
+            <div class="row flex-row">
+
+                <div class="col-md-6">
+                    <div class="with_border with_padding">
+                        <h5>
+                            User Info:
+                        </h5>
+                        <ul class="list1 no-bullets">
+
+                            <li>
+                                <div class="media">
+
+                                    <div class="media-left">
+                                        <img src="<?= base_url('assets/images/team/01.jpg')?>" alt="...">
+                                    </div>
+                                    <div class="media-body media-middle">
+                                        <h5 class="bottommargin_0">
+                                            <a href="<?= route_to('backend.member.edit',$user['id']) ?>"><?=$user['name'] ?></a>
+                                        </h5>
+                                        <?=$user['email']?>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media small-teaser">
+                                    <div class="media-left media-middle">
+                                        <div class="teaser_icon label-success fontsize_16">
+                                            <i class="fa fa-comments"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body media-middle">
+                                        <strong class="grey">
+                                            Comments:
+                                        </strong>
+                                        146
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media small-teaser">
+                                    <div class="media-left media-middle">
+                                        <div class="teaser_icon label-info fontsize_16">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body media-middle">
+                                        <strong class="grey">
+                                            Member sicne:
+                                        </strong>
+                                        12/10/2014
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media small-teaser">
+                                    <div class="media-left media-middle">
+                                        <div class="teaser_icon label-warning fontsize_16">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body media-middle">
+                                        <strong class="grey">
+                                            Orders:
+                                        </strong>
+                                        12
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- .muted_background -->
+                </div>
+                <!-- .col-* -->
+                <?php if ($type =='query'):?>
+                    <div class="col-md-6">
+                    <div class="with_border with_padding">
+
+                        <form method="post" action="<?=route_to('backend.query.store','reply')?>">
+                            <div class="wrap-forms">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Reply to this <?=ucfirst($type)?></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group has-placeholder">
+                                            <label for="form-id-1">Subject
+                                                <sup>*</sup>
+                                            </label>
+                                            <input type="hidden" name="name" value="<?= $user['name'] ?>">
+                                            <input type="hidden" name="send_to" value="<?= $user['id'] ?>">
+                                            <input type="hidden" name="model_id" value="<?= $id ?>">
+                                            <input class="form-control" type="text" name="subject" placeholder="Subject" value="" id="form-id-1" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group has-placeholder">
+                                            <label for="form-id-4">Message
+                                                <sup>*</sup>
+                                            </label>
+                                            <textarea class="form-control" name="description" placeholder="Message" id="form-id-4" required="required" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="wrap-forms">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input class="theme_button wide_button color1" type="submit" value="Answer">
+                                        <input class="theme_button wide_button" type="reset" value="Clear">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <?php endif;?>
+            </div>
+        <?php endif;?>
+
+    </div>
+    <!-- .container -->
+</section>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('backend_script') ?>
+
+<?= $this->endSection() ?>

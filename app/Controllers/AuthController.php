@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Profile;
 use App\Models\Users;
 use Myth\Auth\Password;
 
@@ -95,7 +96,7 @@ class AuthController extends BaseController
             $k_Data[] = $key;
         }
 
-        dd($input,$k_Data);
+        //dd($input,$k_Data);
         helper(['form']);
         $rules = [
             'name'          => 'required|min_length[4]|max_length[50]',
@@ -135,6 +136,27 @@ class AuthController extends BaseController
 
             $userDetails = $userModel->where('email',$this->request->getVar('email'))->first();
             $userId = $userDetails['id'];
+            $profileModel = new Profile();
+            $profileData = [
+                'user_id'=>$userId,
+                'ps' => $this->request->getVar('ps'),
+                'guardian' => $this->request->getVar('guardian'),
+                'district' => $this->request->getVar('district'),
+                'state' => $this->request->getVar('state'),
+                'pin' => $this->request->getVar('pin'),
+                'land_mark' => $this->request->getVar('land_mark'),
+                'dob' => $this->request->getVar('dob'),
+                'age' => $this->request->getVar('age'),
+                'sex' => $this->request->getVar('sex'),
+                'qualification' => $this->request->getVar('qualification'),
+                'curricular_activities' => $this->request->getVar('curricular_activities'),
+                'blood_group' => $this->request->getVar('blood_group'),
+                'occupation' => $this->request->getVar('occupation'),
+                'other_society' => $this->request->getVar('other_society'),
+                'introduced_by' => $this->request->getVar('introduced_by'),
+                'status'   => '0',
+            ];
+            $profileModel->save($profileData);
 
             return redirect()->route('login')->with('success','Registration Successfully please wait for President Approval');
         }else{

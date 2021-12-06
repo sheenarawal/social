@@ -15,32 +15,32 @@ class Profile extends Migration
             ],
             'user_id' => [
                 'type' => 'user_id',
-                'constraint' => '190',
+                'constraint' => '190'
             ],
             'user_ps' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'guardian' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'district' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'state' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'pin' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'land_mark' => [
                 'type' => 'VARCHAR',
@@ -55,58 +55,58 @@ class Profile extends Migration
             'age' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'sex' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'qualification' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'curricular_activities' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'blood_group' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'occupation' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'other_society' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'introduced_by' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'null' => true,
+                'null' => true
             ],
             'status' => [
                 'type' => 'VARCHAR',
                 'constraint' => '190',
-                'default' => '0',
+                'default' => '0'
             ],
             'deleted_at datetime default null',
             'created_at datetime default null',
             'updated_at datetime default null on update current_timestamp'
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('profile');
+        $this->forge->createTable('profiles');
     }
 
     public function down()
     {
-        $this->forge->dropTable('profile');
+        $this->forge->dropTable('profiles');
     }
 }

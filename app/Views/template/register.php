@@ -38,22 +38,22 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="form-group has-placeholder <?php if(session('errors.Son_Daughter_Wife_Sri_Late')) : ?> has-error<?php endif ?>">
-                                        <label for="login-Son_Daughter_Wife_Sri_Late">Son/Daughter/Wife:Sri/Late</label>
+                                    <div class="form-group has-placeholder <?php if(session('errors.guardian')) : ?> has-error<?php endif ?>">
+                                        <label for="login-guardian">Son/Daughter/Wife:Sri/Late</label>
                                         <i class="grey fa fa-users" aria-hidden="true"></i>
-                                        <input type="text" class="form-control" id="login-Son_Daughter_Wife_Sri_Late" placeholder="Son/Daughter/Wife:Sri/Late" name="Son_Daughter_Wife_Sri_Late" required>
+                                        <input type="text" class="form-control" id="login-guardian" placeholder="Son/Daughter/Wife:Sri/Late" name="guardian" required>
                                     </div>
-                                    <?php if(session('errors.Son_Daughter_Wife_Sri_Late')) { ?>
+                                    <?php if(session('errors.guardian')) { ?>
                                         <div class='text-danger'>
-                                            <?= session('errors.Son_Daughter_Wife_Sri_Late') ?>
+                                            <?= session('errors.guardian') ?>
                                         </div>
                                     <?php }?>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="form-group has-placeholder <?php if(session('errors.photo')) : ?> has-error<?php endif ?>">
+                                    <div class="form-group <?php if(session('errors.photo')) : ?> has-error<?php endif ?>">
                                         <label for="login-photo">Photo</label>
-                                        <i class="grey fa fa-picture-o"></i>
+                                        <i class="grey fa fa-picture-o"  style="top: 50px"></i>
                                         <input type="file" class="form-control" id="login-photo" placeholder="Photo" name="photo" required>
                                     </div>
                                     <?php if(session('errors.photo')) { ?>
@@ -64,9 +64,9 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group has-placeholder <?php if(session('errors.address_proof')) : ?> has-error<?php endif ?>">
+                                    <div class="form-group <?php if(session('errors.address_proof')) : ?> has-error<?php endif ?>">
                                         <label for="login-address_proof">Address Proof</label>
-                                        <i class="grey fa fa-map-marker"></i>
+                                        <i class="grey fa fa-map-marker" style="top: 50px"></i>
                                         <input type="file" class="form-control" id="login-address_proof" placeholder="Address Proof" name="address_proof" required>
                                     </div>
                                     <?php if(session('errors.address_proof')) { ?>

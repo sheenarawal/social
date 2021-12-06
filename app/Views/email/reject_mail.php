@@ -344,7 +344,10 @@
 
                 <!-- START CENTERED WHITE CONTAINER -->
                 <table role="presentation" class="main">
-
+                    <?php
+                        $description = isset($message_data['description']) ? $message_data['description'] : '' ;
+                        $reason = json_decode($description,true);
+                    ?>
                     <!-- START MAIN CONTENT AREA -->
                     <tr>
                         <td class="wrapper">
@@ -352,21 +355,18 @@
                                 <tr>
                                     <td>
                                         <p>Hi there,</p>
-                                        <p>We are pleased to inform you that your request to membership is approved .</p>
+                                        <p>We are pleased to inform you that your request to membership is <b> not approved</b> .</p>
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                             <tbody>
                                             <tr>
                                                 <td align="left">
-                                                    <ul>
-                                                        <li>Username : <?= isset($message_data['username'])?$message_data['username']:''?></li>
-                                                        <li>Password : <?= isset($message_data['password'])?$message_data['password']:''?></li>
-                                                    </ul>
+                                                    <h4>Reason : <?= isset($reason['status'])?$reason['status']:'' ?></h4>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                         <p class="hidden">This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p>
-                                        <p>Good luck! Hope it works.</p>
+                                        <p>Good luck!</p>
                                     </td>
                                 </tr>
                             </table>

@@ -67,11 +67,11 @@ class MemberController extends BaseController
             $data = [
                 'name' => $this->request->getVar('name'),
                 'role' => 1,
-                'username' => $username,
+                'username' => $user['username'],
                 'email' => $this->request->getVar('email'),
                 'mobile' => $this->request->getVar('mobile'),
                 'password_hash' => Password::hash($password),
-                'password' => $password,
+                'password' => $user['password'],
                 'photo' => $photo_name,
                 'address' => $this->request->getVar('address'),
                 'description' => json_encode($description),
@@ -151,11 +151,33 @@ class MemberController extends BaseController
             $data = $email->printDebugger(['headers']);
             $response =false;
         }
+        return $response;
+    }
+    public function send_reject_mail($to,$subject,$message_data=null)
+    {
+        $email = \Config\Services::email();
+        $message = view('email/reject_mail',compact('message_data'));
+        $email->setTo($to);
+        $email->setFrom('sahilyadav.inwave@gmail.com', 'Contact Email');
+        $email->setSubject($subject);
+        $email->setMessage($message);
+
+        if ($email->send()) {
+            $response = true;
+        }
+        else
+        {
+            $data = $email->printDebugger(['headers']);
+            $response =false;
+        }
+        return $response;
     }
 
     public function email()
     {
-        return view('email/approve_mail.php');
+        $model = new Users();
+        $message_data = $model->where('id',6)->first();
+        return view('email/reject_mail.php',compact('message_data'));
     }
     public function current_route()
     {
@@ -170,12 +192,29 @@ class MemberController extends BaseController
             $userModel = new Users();
             $user = $userModel->where('id',$id)->first();
             $description = $userModel->userDescription($id,$this->request->getVar('description'));
+            $status = $this->request->getVar('status');
             $data = [
-                'status' => $this->request->getVar('status'),
+                'status' => $status,
                 'description' => $description,
             ];
+            if ($status == 1){
+                $subject = 'Member approved confirmation';
+                $response = $this->send_approve_mail($user['email'],$subject,$user);
+                $message = 'mail not send successfully';
+                if ($response){
+                    $message = 'mail sent successfully';
+                }
+            }
+            if ($status == 2){
+                $subject = 'Member not approved confirmation';
+                $response = $this->send_reject_mail($user['email'],$subject,$user);
+                $message = 'mail not send successfully';
+                if ($response){
+                    $message = 'mail sent successfully';
+                }
+            }
             $update = $userModel->update($id, $data);
-            return redirect()->back()->with('success','member Status Update');
+            return redirect()->back()->with('success','member Status Update ! '.$message);
         }
         return redirect()->back()->with('error','member not found');
     }

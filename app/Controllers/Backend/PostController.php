@@ -73,6 +73,7 @@ class PostController extends BaseController
     {
         $postModel = new Posts();
         $post = $postModel->getpost('id',$id);
+        dd($post);
         return view('pages/backend/post/edit',compact('post'));
     }
 

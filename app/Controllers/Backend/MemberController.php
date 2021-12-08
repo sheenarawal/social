@@ -45,11 +45,11 @@ class MemberController extends BaseController
         if ($this->validate($rules)) {
             $username = $this->makeUsername($this->request->getVar('email'));
             $password = $this->makePassword($this->request->getVar('name'), $this->request->getVar('mobile'));
-            $photo = $this->request->getFile('photo');
             $status = $user['status'];
             if (session('logged_in')['auth']['role']==0){
                 $status = $this->request->getVar('status');
             }
+            $photo = $this->request->getFile('photo');
             if ($photo->isValid() && !$photo->hasMoved()) {
                 $photo->move(ROOTPATH . 'public/uploads');
                 $photo_name = $photo->getName();
@@ -94,9 +94,9 @@ class MemberController extends BaseController
             'name' => 'required|min_length[4]|max_length[50]',
             'email' => 'required|min_length[5]|max_length[100]|valid_email|is_unique[users.email,id,'.$id.']',
             'mobile' => 'required|min_length[10]|max_length[10]|is_unique[users.mobile,id,'.$id.']',
-            'photo' => 'permit_empty|uploaded[photo]|mime_in[photo,image/jpg,image/jpeg,image/png]|max_size[photo,1024]',
+            'photo' => 'permit_empty|uploaded[photo]|mime_in[photo,application/pdf,image/jpg,image/jpeg,image/png]|max_size[photo,1024]',
             'address' => 'required|min_length[4]|max_length[190]',
-            'address_proof' => 'permit_empty|uploaded[address_proof]|mime_in[address_proof,image/jpg,image/jpeg,image/png]|max_size[address_proof,1024]',
+            'address_proof' => 'permit_empty|uploaded[address_proof]|mime_in[address_proof,application/pdf,image/jpg,image/jpeg,image/png]|max_size[address_proof,1024]',
         ];
         return $rules;
     }
@@ -197,6 +197,7 @@ class MemberController extends BaseController
                 'status' => $status,
                 'description' => $description,
             ];
+            $message = 'Send email is not available';
             if ($status == 1){
                 $subject = 'Member approved confirmation';
                 $response = $this->send_approve_mail($user['email'],$subject,$user);
@@ -217,6 +218,35 @@ class MemberController extends BaseController
             return redirect()->back()->with('success','member Status Update ! '.$message);
         }
         return redirect()->back()->with('error','member not found');
+    }
+
+    public function send_sms2($numbers,$message)
+    {
+        $local_api = 'NTE2NzVhNTY2MTZiNGU2MjM5MzM3NDY3NTczOTZkNjk=';
+        $server_api = 'MzU0NzZiNzY3MTZiNjk1NjZiNDI0MjVhNjc2NzMwNTc==';
+
+        // Account details
+        $apiKey = urlencode($local_api);
+        // Message details
+        //$numbers = array();
+
+        $sender = urlencode('WLTNED');
+        $message = rawurlencode($message);
+        $numbers = implode(', ', $numbers);
+
+        // Prepare data for POST request
+        $data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
+
+        // Send the POST request with cURL
+        $ch = curl_init('https://api.textlocal.in/send/');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        // Process your response here
+        return $response;
     }
 
 }

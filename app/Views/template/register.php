@@ -41,7 +41,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.guardian')) : ?> has-error<?php endif ?>">
                                         <label for="login-guardian">Son/Daughter/Wife:Sri/Late</label>
                                         <i class="grey fa fa-users" aria-hidden="true"></i>
-                                        <input type="text" class="form-control" id="login-guardian" placeholder="Son/Daughter/Wife:Sri/Late" name="guardian" required>
+                                        <input type="text" class="form-control" id="login-guardian" placeholder="Son/Daughter/Wife:Sri/Late" name="guardian" value="<?=old('guardian')?>"  required>
                                     </div>
                                     <?php if(session('errors.guardian')) { ?>
                                         <div class='text-danger'>
@@ -67,7 +67,7 @@
                                     <div class="form-group <?php if(session('errors.address_proof')) : ?> has-error<?php endif ?>">
                                         <label for="login-address_proof">Address Proof</label>
                                         <i class="grey fa fa-map-marker" style="top: 50px"></i>
-                                        <input type="file" class="form-control" id="login-address_proof" placeholder="Address Proof" name="address_proof" required>
+                                        <input type="file" class="form-control" id="login-address_proof" placeholder="Address Proof" name="address_proof" accept="application/pdf, image/*" required>
                                     </div>
                                     <?php if(session('errors.address_proof')) { ?>
                                         <div class='text-danger'>
@@ -95,7 +95,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.ps')) : ?> has-error<?php endif ?>">
                                         <label for="login-ps">P.S.</label>
                                         <i class="grey fa fa-map-marker"></i>
-                                        <input type="text" class="form-control" id="login-ps" placeholder="PS" name="ps" required>
+                                        <input type="text" class="form-control" id="login-ps" placeholder="PS" name="ps" value="<?=old('ps')?>" required>
                                     </div>
                                     <?php if(session('errors.ps')) { ?>
                                         <div class='text-danger'>
@@ -107,7 +107,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.district')) : ?> has-error<?php endif ?>">
                                         <label for="login-district:">District:</label>
                                         <i class="grey fa fa-thumb-tack"></i>
-                                        <input type="text" class="form-control" id="login-district:" placeholder="district:" name="district:" required>
+                                        <input type="text" class="form-control" id="login-district:" placeholder="district:" name="district" value="<?=old('district')?>" required>
                                     </div>
                                     <?php if(session('errors.district:')) { ?>
                                         <div class='text-danger'>
@@ -119,7 +119,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.state')) : ?> has-error<?php endif ?>">
                                         <label for="login-state">State</label>
                                         <i class="grey fa fa-location-arrow"></i>
-                                        <input type="text" class="form-control" id="login-state" placeholder="state" name="state" required>
+                                        <input type="text" class="form-control" id="login-state" placeholder="state" name="state" value="<?=old('state')?>" required>
                                     </div>
                                     <?php if(session('errors.state')) { ?>
                                         <div class='text-danger'>
@@ -132,7 +132,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.pin')) : ?> has-error<?php endif ?>">
                                         <label for="pin">PIN</label>
                                         <i class="grey fa fa-map-pin"></i>
-                                        <input type="text" class="form-control" id="pin" placeholder="PIN" name="pin" required>
+                                        <input type="text" class="form-control" id="pin" placeholder="PIN" name="pin" value="<?=old('pin')?>" required>
                                     </div>
                                     <?php if(session('errors.pin')) { ?>
                                         <div class='text-danger'>
@@ -145,7 +145,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.land_mark')) : ?> has-error<?php endif ?>">
                                         <label for="login-land_mark">Nearest Location(Land Mark)</label>
                                         <i class="grey fa fa-map-signs"></i>
-                                        <input type="text" class="form-control" id="land_mark" placeholder="Nearest Location(Land Mark)" name="land_mark" required>
+                                        <input type="text" class="form-control" id="land_mark" placeholder="Nearest Location(Land Mark)" name="land_mark" value="<?=old('land_mark')?>" required>
                                     </div>
                                     <?php if(session('errors.land_mark')) { ?>
                                         <div class='text-danger'>
@@ -158,7 +158,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.dob')) : ?> has-error<?php endif ?>">
                                         <label for="login-dob">Data of Birth</label>
                                         <i class="grey fa fa-calendar-check-o"></i>
-                                        <input type="text" class="form-control" id="login-dob" placeholder="Data of Birth" name="dob" required>
+                                        <input type="date" class="form-control" id="login-dob" placeholder="Data of Birth" name="dob" value="<?=old('dob')?>" required>
                                     </div>
                                     <?php if(session('errors.dob')) { ?>
                                         <div class='text-danger'>
@@ -171,7 +171,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.age')) : ?> has-error<?php endif ?>">
                                         <label for="login-age">Age</label>
                                         <i class="grey fa fa-map-marker"></i>
-                                        <input type="text" class="form-control" id="login-age" placeholder="Age" name="age" required>
+                                        <input type="text" class="form-control" id="login-age" placeholder="Age" name="age" value="<?=old('age')?>" required>
                                     </div>
                                     <?php if(session('errors.age')) { ?>
                                         <div class='text-danger'>
@@ -184,7 +184,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.sex')) : ?> has-error<?php endif ?>">
                                         <label for="login-sex">Sex</label>
                                         <i class="grey fa fa-user" aria-hidden="true"></i>
-                                        <input type="text" class="form-control" id="login-sex" placeholder="Sex" name="sex" required>
+                                        <input type="text" class="form-control" id="login-sex" placeholder="Sex" name="sex" value="<?=old('sex')?>" required>
                                     </div>
                                     <?php if(session('errors.sex')) { ?>
                                         <div class='text-danger'>
@@ -197,7 +197,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.qualification')) : ?> has-error<?php endif ?>">
                                         <label for="login-qualification">Qualification</label>
                                         <i class="grey fa fa-book"></i>
-                                        <input type="text" class="form-control" id="login-qualification" placeholder="Qualification" name="qualification" required>
+                                        <input type="text" class="form-control" id="login-qualification" placeholder="Qualification" name="qualification" value="<?=old('qualification')?>" required>
                                     </div>
                                     <?php if(session('errors.qualification')) { ?>
                                         <div class='text-danger'>
@@ -210,7 +210,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.curricular_activities')) : ?> has-error<?php endif ?>">
                                         <label for="login-curricular_activities">Extra Curricular activities</label>
                                         <i class="grey fa fa-map-marker"></i>
-                                        <input type="text" class="form-control" id="login-curricular_activities" placeholder="Extra Curricular activities" name="curricular_activities" required>
+                                        <input type="text" class="form-control" id="login-curricular_activities" placeholder="Extra Curricular activities" name="curricular_activities" value="<?=old('curricular_activities')?>" required>
                                     </div>
                                     <?php if(session('errors.curricular_activities')) { ?>
                                         <div class='text-danger'>
@@ -223,7 +223,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.blood_group')) : ?> has-error<?php endif ?>">
                                         <label for="login-blood_group">Blood Group</label>
                                         <i class="grey fa fa-tint"></i>
-                                        <input type="text" class="form-control" id="login-blood_group" placeholder="Blood Group" name="blood_group" required>
+                                        <input type="text" class="form-control" id="login-blood_group" placeholder="Blood Group" name="blood_group" value="<?=old('blood_group')?>" required>
                                     </div>
                                     <?php if(session('errors.blood_group')) { ?>
                                         <div class='text-danger'>
@@ -236,7 +236,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.occupation')) : ?> has-error<?php endif ?>">
                                         <label for="login-occupation">Occupation</label>
                                         <i class="grey fa fa-map-marker"></i>
-                                        <input type="text" class="form-control" id="login-occupation" placeholder="Occupation" name="occupation" required>
+                                        <input type="text" class="form-control" id="login-occupation" placeholder="Occupation" name="occupation"  value="<?=old('occupation')?>" required>
                                     </div>
                                     <?php if(session('errors.occupation')) { ?>
                                         <div class='text-danger'>
@@ -274,7 +274,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.other_society')) : ?> has-error<?php endif ?>">
                                         <label for="login-other_society">If Attached with any other society</label>
                                         <i class="grey fa fa-globe"></i>
-                                        <input type="text" class="form-control" id="login-other_society" placeholder="If Attached with any other society" name="other_society" required>
+                                        <input type="text" class="form-control" id="login-other_society" placeholder="If Attached with any other society" name="other_society" value="<?=old('other_society')?>" required>
                                     </div>
                                     <?php if(session('errors.other_society')) { ?>
                                         <div class='text-danger'>
@@ -287,7 +287,7 @@
                                     <div class="form-group has-placeholder <?php if(session('errors.introduced_by')) : ?> has-error<?php endif ?>">
                                         <label for="login-introduced_by">Introduced by</label>
                                         <i class="grey fa fa-handshake-o"></i>
-                                        <input type="text" class="form-control" id="login-introduced_by" placeholder="Introduced by" name="introduced_by" required>
+                                        <input type="text" class="form-control" id="login-introduced_by" placeholder="Introduced by" name="introduced_by" value="<?=old('introduced_by')?>" required>
                                     </div>
                                     <?php if(session('errors.introduced_by')) { ?>
                                         <div class='text-danger'>

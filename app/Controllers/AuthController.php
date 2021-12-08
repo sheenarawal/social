@@ -102,9 +102,9 @@ class AuthController extends BaseController
             'name'          => 'required|min_length[4]|max_length[50]',
             'email'         => 'required|min_length[5]|max_length[100]|valid_email|is_unique[users.email]',
             'mobile'         => 'required|min_length[10]|max_length[10]|is_unique[users.mobile]',
-            'photo'          => 'uploaded[photo]|mime_in[photo,image/jpg,image/jpeg,image/png]|max_size[photo,1024]',
+            'photo'          => 'uploaded[photo]|mime_in[photo,application/pdf,image/jpg,image/jpeg,image/png]|max_size[photo,1024]',
             'address'          => 'required|min_length[4]|max_length[190]',
-            'address_proof'          => 'uploaded[address_proof]|mime_in[address_proof,image/jpg,image/jpeg,image/png]|max_size[address_proof,1024]',
+            'address_proof'          => 'uploaded[address_proof]|mime_in[address_proof,application/pdf,image/jpg,image/jpeg,image/png]|max_size[address_proof,1024]',
         ];
 
         if($this->validate($rules)){
@@ -112,11 +112,11 @@ class AuthController extends BaseController
             $password = $this->makePassword($this->request->getVar('name'),$this->request->getVar('mobile'));
             $photo = $this->request->getFile('photo');
             if (!$photo->hasMoved()){
-                $photo->move(WRITEPATH . 'uploads');
+                $photo->move(ROOTPATH . 'public/uploads');
             }
             $address_proof = $this->request->getFile('photo');
             if (!$address_proof->hasMoved()){
-                $address_proof->move(WRITEPATH . 'uploads');
+                $address_proof->move(ROOTPATH . 'public/uploads');
             }
             $userModel = new Users();
             $data = [

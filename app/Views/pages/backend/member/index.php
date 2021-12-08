@@ -109,9 +109,11 @@
                                     <input type="checkbox">
                                 </th>
                                 <th>Name:</th>
+                                <th>User Image:</th>
                                 <th>User Name:</th>
                                 <th>Mobile:</th>
-                                <th>address:</th>
+                                <th>Address:</th>
+                                <th>Address Proof:</th>
                                 <th>Status:</th>
                                 <th>Action:</th>
                             </tr>
@@ -122,10 +124,13 @@
                                     </td>
                                     <td class="media-middle">
                                         <h5>
-                                            <a href="<?=route_to('backend.post.edit',$data['id']) ?>">
+                                            <a href="<?=route_to('backend.member.edit',$data['id']) ?>">
                                                 <?= $data['name']?>
                                             </a>
                                         </h5>
+                                    </td>
+                                    <td class="media-middle">
+                                        <img src="<?=base_url('uploads/'.$data['photo']) ?>" class="img-circle img-responsive" alt="/" style="max-width: 80px;max-height: 80px;">
                                     </td>
                                     <td class="media-middle">
                                         <?= $data['username']?>
@@ -137,6 +142,9 @@
                                         <?= $data['address']?>
                                     </td>
                                     <td class="media-middle">
+                                        <img src="<?=base_url('uploads/'.$data['address_proof']) ?>" class="img-responsive" alt="/" style="max-width: 80px;max-height: 80px;">
+                                    </td>
+                                    <td class="media-middle">
                                         <span class="text-<?=userStatus($data['status'])['badge']?>"><?=userStatus($data['status'])['value']?></span>
                                     </td>
                                     <td>
@@ -145,7 +153,7 @@
                                         <a class="btn btn-link" href="<?=route_to('backend.member.delete',$data['id']) ?>">
                                             <i class="fa fa-trash-o " aria-hidden="true"></i></a>
                                         <a class="btn btn-link" id="update_status" data-id="<?=$data['id']?>" data-status="<?=$data['status']?>" data-target="#member_status" href="#member_status" data-toggle="modal" role="button">
-                                            <i class="fa fa-check-circle-o" aria-hidden="true"></i></a>
+                                            <i class="fa fa-check-circle-o text-warning" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             <?php }?>

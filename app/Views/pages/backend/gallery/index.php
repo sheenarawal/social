@@ -1,6 +1,5 @@
 <?= $this->extend('template/backend/header') ?>
 <?= $this->section('backend_content') ?>
-<?php helper('custom_helper');?>
 <section class="ls with_bottom_border">
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +8,7 @@
                     <li>
                         <a href="#">Dashboard</a>
                     </li>
-                    <li class="active">Members</li>
+                    <li class="active">Gallery Images</li>
                 </ol>
             </div>
             <!-- .col-* -->
@@ -32,7 +31,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Members</h3>
+                <h3>Gallery</h3>
             </div>
             <!-- .col-* -->
         </div>
@@ -84,7 +83,7 @@
                         <div class="col-lg-3 text-lg-right">
                             <div class="widget widget_search">
 
-                                <form method="get" action="<?=route_to('backend.post.index')?> ">
+                                <form method="get" action="<?=route_to('backend.gallery.index')?> ">
                                     <!-- <div class="form-group-wrap"> -->
                                     <div class="form-group">
                                         <label class="sr-only" for="widget-search">Search for:</label>
@@ -108,54 +107,49 @@
                                 <th class="media-middle text-center">
                                     <input type="checkbox">
                                 </th>
-                                <th>Name:</th>
-                                <th>User Image:</th>
-                                <th>User Name:</th>
-                                <th>Mobile:</th>
-                                <th>Address:</th>
-                                <th>Address Proof:</th>
+                                <th>Title:</th>
+                                <th>Categories:</th>
+                                <th>Tag:</th>
+                                <th>Date:</th>
                                 <th>Status:</th>
                                 <th>Action:</th>
                             </tr>
-                            <?php foreach ($users as $data){ ?>
+                            <?php foreach ($gallery as $data){ ?>
                                 <tr class="item-editable">
-                                    <td class="media-middle text-center">
-                                        <input type="checkbox">
-                                    </td>
-                                    <td class="media-middle">
-                                        <h5>
-                                            <a href="<?=route_to('backend.member.edit',$data['id']) ?>">
-                                                <?= $data['name']?>
-                                            </a>
-                                        </h5>
-                                    </td>
-                                    <td class="media-middle">
-                                        <img src="<?=base_url('uploads/'.$data['photo']) ?>" class="img-circle img-responsive" alt="/" style="max-width: 80px;max-height: 80px;">
-                                    </td>
-                                    <td class="media-middle">
-                                        <?= $data['username']?>
-                                    </td>
-                                    <td class="media-middle">
-                                        <?= $data['mobile']?>
-                                    </td>
-                                    <td class="media-middle">
-                                        <?= $data['address']?>
-                                    </td>
-                                    <td class="media-middle">
-                                        <img src="<?=base_url('uploads/'.$data['address_proof']) ?>" class="img-responsive" alt="/" style="max-width: 80px;max-height: 80px;">
-                                    </td>
-                                    <td class="media-middle">
-                                        <span class="text-<?=userStatus($data['status'])['badge']?>"><?=userStatus($data['status'])['value']?></span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-link" href="<?=route_to('backend.member.edit',$data['id']) ?>">
+                                <td class="media-middle text-center">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="media-middle">
+                                    <h5>
+                                        <a href="<?=route_to('backend.gallery.edit',$data['id']) ?>">
+                                            <?= $data['title']?>
+                                        </a>
+                                    </h5>
+                                </td>
+                                <td class="media-middle">
+                                    <?= $data['category']?>
+                                </td>
+                                <td class="media-middle">
+                                    <?= $data['tag']?>
+                                </td>
+                                <td class="media-middle">
+                                    <time datetime="2017-02-08T20:25:23+00:00" class="entry-date">
+                                        <?= $data['publish_date']?> at
+                                        <?= $data['publish_time']?>
+                                    </time>
+                                </td>
+                                <td class="media-middle">
+                                    <?= $data['status'] == 1?'Published':'Draft'?>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link " href="<?=route_to('backend.gallery.edit',$data['id']) ?>">
                                             <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i></a>
-                                        <a class="btn btn-link" href="<?=route_to('backend.member.delete',$data['id']) ?>">
+                                        <a class="btn btn-link " href="<?=route_to('backend.gallery.delete',$data['id']) ?>">
                                             <i class="fa fa-trash-o " aria-hidden="true"></i></a>
-                                        <a class="btn btn-link" id="update_status" data-id="<?=$data['id']?>" data-status="<?=$data['status']?>" data-target="#member_status" href="#member_status" data-toggle="modal" role="button">
-                                            <i class="fa fa-check-circle-o text-warning" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
                             <?php }?>
                         </table>
                     </div>
@@ -170,6 +164,24 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-md-6">
+                        <!--<ul class="pagination">
+                            <li class="disabled">
+                                <a href="#">
+                                    <span class="sr-only">Prev</span>
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li>
+                                <a href="#">
+                                    <span class="sr-only">Next</span>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>-->
                         <?= $pager->links() ?>
                     </div>
                     <div class="col-md-6 text-md-right">
@@ -183,7 +195,6 @@
     <!-- .container -->
 </section>
 
-<!-- eof .modal -->
 <?= $this->endSection() ?>
 
 <?= $this->section('backend_css') ?>
@@ -196,58 +207,4 @@
 <?= $this->endSection() ?>
 <?= $this->section('backend_script') ?>
 
-<!-- Unyson messages modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="member_status">
-    <!-- <div class="ls with_padding"> -->
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <form class="with_padding" method="post" action="<?= route_to('backend.member.status')?>">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3>Member Status</h3>
-                        <div class="contact-form-name">
-                            <label for="status">Status
-                                <span class="required">*</span>
-                            </label>
-                            <input type="hidden" name="status_member_id" id="status_member_id">
-                            <select type="text" name="status" id="status" class="form-control" >
-                                <option disabled selected>Status</option>
-                                <?php foreach (userStatus('all') as $key=> $status){;?>
-                                    <option value="<?= $key ?>"><?= $status ?></option>
-                                <?php }?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="contact-form-message">
-                            <label for="description">Description</label>
-                            <textarea aria-required="true" rows="3" name="description" id="description" class="form-control" placeholder="Description"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="theme_button wide_button color1">Update Status</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).on('click', '#update_status', function (e) {
-        e.preventDefault();
-        var id, status;
-        id = $(this).data('id')
-        status = $(this).data('status')
-        $('#status_member_id').attr('value',id)
-        $("#status option").each(function(){
-            if($(this).val()==status){
-                $(this).attr("selected","selected");
-            }
-        });
-
-    });
-</script>
 <?= $this->endSection() ?>

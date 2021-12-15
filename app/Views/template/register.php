@@ -1,6 +1,8 @@
-
-<?= $this->extend('template/header') ?>
-<?= $this->section('frontend_content') ?>
+<style>
+    .razorpay-payment-button{
+        margin-top: -30px;
+    }
+</style>
 <!-- template sections -->
 <section class="ls section_padding_top_100 section_padding_bottom_100 section_full_height">
     <div class="container">
@@ -335,31 +337,3 @@
     </div>
     <!-- .container -->
 </section>
-
-
-
-<?= $this->endSection() ?>
-
-<?= $this->section('frontend_css') ?>
-
-<style>
-    .razorpay-payment-button{
-        margin-top: -30px;
-    }
-</style>
-<?= $this->endSection() ?>
-<?= $this->section('frontend_script') ?>
-
-<script>
-    $(document).ready(function() {
-        $('#already_paid').change(function() {
-            if(this.checked) {
-                $('.razorpay-payment-button').hide();
-            } else {
-                $('.razorpay-payment-button').show();
-            }
-
-        });
-    });
-</script>
-<?= $this->endSection() ?>

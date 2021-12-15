@@ -24,7 +24,9 @@ class AuthController extends BaseController
 
     public function login()
     {
-        return  view('template/login');
+        echo  view('template/header');
+        echo  view('template/login');
+        echo  view('template/script');
     }
 
     public function loginProceed()
@@ -82,9 +84,9 @@ class AuthController extends BaseController
     {
         $key = $this->razorKey;
         $secret = $this->razorSecret;
-        //echo  view('template/header');
-        return  view('template/register',compact('key','secret'));
-        //echo  view('template/script');
+        echo  view('template/header');
+        echo  view('template/register',compact('key','secret'));
+        echo  view('template/script');
     }
 
     public function store()

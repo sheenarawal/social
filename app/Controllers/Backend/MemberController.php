@@ -3,7 +3,6 @@
 namespace App\Controllers\Backend;
 
 use App\Controllers\BaseController;
-use App\Models\Profile;
 use App\Models\Users;
 use Myth\Auth\Password;
 
@@ -37,40 +36,6 @@ class MemberController extends BaseController
         }
         return view('pages/backend/member/edit', compact('user','description'));
     }
-    public function profile($id)
-    {
-        $postModel = new Profile();
-        $user = $postModel->where('user_id', $id)->first();
-        return view('pages/backend/member/profile', compact('user','id'));
-    }
-
-    public function updateProfile($id)
-    {
-        $profileModel = new Profile();
-        $profile = $profileModel->where('user_id',$id)->first();
-        $profileData = [
-            'ps' => $this->request->getVar('ps'),
-            'guardian' => $this->request->getVar('guardian'),
-            'district' => $this->request->getVar('district'),
-            'state' => $this->request->getVar('state'),
-            'pin' => $this->request->getVar('pin'),
-            'land_mark' => $this->request->getVar('land_mark'),
-            'dob' => $this->request->getVar('dob'),
-            'age' => $this->request->getVar('age'),
-            'sex' => $this->request->getVar('sex'),
-            'qualification' => $this->request->getVar('qualification'),
-            'curricular_activities' => $this->request->getVar('curricular_activities'),
-            'blood_group' => $this->request->getVar('blood_group'),
-            'occupation' => $this->request->getVar('occupation'),
-            'other_society' => $this->request->getVar('other_society'),
-            'introduced_by' => $this->request->getVar('introduced_by'),
-            'status'   => '0',
-        ];
-
-        $profileModel->update($profile['id'],$profileData);
-        return redirect()->route('backend.member.index')->with('success', 'Member Profile update successfully');
-    }
-
 
     public function update($id)
     {

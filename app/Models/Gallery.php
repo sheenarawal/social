@@ -4,11 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Posts extends Model
+class Gallery extends Model
 {
     //protected $DBGroup          = 'default';
     protected $useSoftDeletes        = true;
-    protected $table            = 'posts';
+    protected $table            = 'gallery';
     /*protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -44,7 +44,7 @@ class Posts extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];*/
 
-    public function getpost($key = false,$value=false)
+    public function getgallery($key = false,$value=false)
     {
         if ($key === false && $value == false) {
             return $this->findAll();

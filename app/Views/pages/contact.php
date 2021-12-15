@@ -1,6 +1,3 @@
-<?= $this->extend('template/header') ?>
-<?= $this->section('frontend_content') ?>
-
 <section class="page_breadcrumbs cs gradient2 parallax section_padding_top_50 section_padding_bottom_50">
     <div class="container">
         <div class="row">
@@ -156,13 +153,3 @@
         </div>
     </div>
 </section>
-
-
-<?= $this->endSection() ?>
-
-<?= $this->section('frontend_css') ?>
-
-<?= $this->endSection() ?>
-<?= $this->section('frontend_script') ?>
-
-<?= $this->endSection() ?>

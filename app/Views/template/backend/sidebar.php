@@ -39,8 +39,8 @@
                                     Profile
                                 </a>
                             </li>
-                            <li class="<?= route_to('payment.view')?>">
-                                <a href="">
+                            <li>
+                                <a href="<?= route_to('backend.member.editProfile',$auth['id'])?>">
                                     <i class="fa fa-edit"></i>
                                     Edit Profile
                                 </a>
@@ -144,24 +144,6 @@
                                 <li>
                                     <a href="<?=route_to('backend.event.create')?>">
                                         Single Event
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="">
-                            <a href="#">
-                                <i class="fa fa-image"></i>
-                                Gallery
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="<?=route_to('backend.gallery.index')?>">
-                                        Gallery
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?=route_to('backend.gallery.create')?>">
-                                        Single Image
                                     </a>
                                 </li>
                             </ul>

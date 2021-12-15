@@ -150,10 +150,12 @@
                                     <td>
                                         <a class="btn btn-link" href="<?=route_to('backend.member.edit',$data['id']) ?>">
                                             <i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i></a>
-                                        <a class="btn btn-link" href="<?=route_to('backend.member.delete',$data['id']) ?>">
-                                            <i class="fa fa-trash-o " aria-hidden="true"></i></a>
+                                        <a class="btn btn-link" href="<?=route_to('backend.member.editProfile',$data['id']) ?>" title="Edit Profile">
+                                            <i class="fa fa-cogs" aria-hidden="true"></i></a>
                                         <a class="btn btn-link" id="update_status" data-id="<?=$data['id']?>" data-status="<?=$data['status']?>" data-target="#member_status" href="#member_status" data-toggle="modal" role="button">
                                             <i class="fa fa-check-circle-o text-warning" aria-hidden="true"></i></a>
+                                        <a class="btn btn-link" href="<?=route_to('backend.member.delete',$data['id']) ?>">
+                                            <i class="fa fa-trash-o " aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             <?php }?>

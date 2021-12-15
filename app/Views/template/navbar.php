@@ -1,5 +1,4 @@
 
-
 <section class="page_topline ds darkblue parallax table_section table_section_sm section_padding_bottom_10 section_padding_top_10">
     <div class="container-fluid">
         <div class="row">
@@ -15,7 +14,7 @@
 								</span>
                 </div>
             </div>
-            <div class="col-sm-4 text-center" id="social_icons">
+            <div class="col-sm-4 text-center">
                 <div>
                     <a class="social-icon color-icon soc-facebook" href="#" title="Facebook"></a>
                     <a class="social-icon color-icon soc-twitter" href="#" title="Twitter"></a>
@@ -24,7 +23,7 @@
                     <a class="social-icon color-icon soc-youtube" href="#" title="Youtube"></a>
                 </div>
             </div>
-            <div class="col-sm-6 text-center text-sm-right" id="keywordform">
+            <div class="col-sm-6 text-center text-sm-right">
                 <div class="widget widget_search inline-block">
                     <form method="get" class="searchform form-inline" action="https://html.modernwebtemplates.com/social-activism/">
                         <div class="form-group-wrap">
@@ -84,10 +83,6 @@
 
                             <li>
                                 <a href="<?= route_to('frontend.contact') ?>">Contact</a>
-                            </li>
-
-                            <li>
-                                <a href="<?= route_to('frontend.gallery') ?>">Gallery</a>
                             </li>
 
                             <li>

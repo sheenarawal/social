@@ -50,6 +50,10 @@ $routes->get('/login-redirect' ,function (){
     }
 },['as'=>'login_redirect']);
 
+$routes->group('/page/post', function($routes){
+    $routes->get('/', 'PostController::index',['as'=>'frontend.post.index']);
+    $routes->get('show/(:num)', 'PostController::show/$1',['as'=>'frontend.post.show']);
+});
 $routes->group('/', ['filter' => 'guest'], function($routes){
     $routes->get('/login', 'AuthController::login',['as'=>'login']);
     $routes->get('/signup', 'AuthController::register',['as'=>'register']);
@@ -135,6 +139,8 @@ $routes->group('/', ['filter' => 'login'], function($routes){
         $routes->post('store', 'MemberController::store',['as'=>'backend.member.store']);
         $routes->post('status', 'MemberController::status',['as'=>'backend.member.status']);
         $routes->post('update/(:num)', 'MemberController::update/$1',['as'=>'backend.member.update']);
+        $routes->post('update/profile/(:num)', 'MemberController::updateProfile/$1',['as'=>'backend.member.updateProfile']);
+        $routes->get('edit/profile/(:num)', 'MemberController::Profile/$1',['as'=>'backend.member.editProfile']);
         $routes->get('edit/(:num)', 'MemberController::edit/$1',['as'=>'backend.member.edit']);
         $routes->get('delete/(:num)', 'MemberController::delete/$1',['as'=>'backend.member.delete']);
 

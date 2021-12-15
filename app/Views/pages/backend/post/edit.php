@@ -40,7 +40,6 @@
             </div>
         </div>
         <!-- .row -->
-        <?= dd($post)?>
         <form class="form-horizontal" action="<?=route_to('backend.post.update',$post['id'])?>" method="post" enctype="multipart/form-data">
 
             <div class="row">

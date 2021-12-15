@@ -16,8 +16,8 @@ class Posts extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;*/
     protected $allowedFields    = [
-        'title','slug','category','tag','publish_date','publish_time',
-        'description','media','status','created_at','deleted_at',
+        'id','title','slug','category','tag','publish_date','publish_time',
+        'description','media','status','created_at','deleted_at','location'
     ];
     //protected $returnType = 'App\Entities\User';
     // Dates
@@ -51,5 +51,14 @@ class Posts extends Model
         }
 
         return $this->where([$key => $value])->first();
+    }
+
+    public function postByGroup()
+    {
+        $this->db->group_by("userid");
+    }
+    public function last_record()
+    {
+        return '';
     }
 }

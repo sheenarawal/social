@@ -14,11 +14,11 @@
             </div>
             <!-- .col-* -->
             <div class="col-md-6 text-md-right">
-							<span class="dashboard-daterangepicker">
-								<i class="fa fa-calendar"></i>
-								<span></span>
-								<i class="caret"></i>
-							</span>
+                <span class="dashboard-daterangepicker">
+                    <i class="fa fa-calendar"></i>
+                    <span></span>
+                    <i class="caret"></i>
+                </span>
             </div>
             <!-- .col-* -->
         </div>
@@ -42,7 +42,10 @@
 
                     $3,000
 
-                    <span class="sparklines" data-values="670,350,135,-170,-324,-386,-468,-200,55,375,520,270,790,-670,-350,135,170,324,386,468,10,55,375,520,270,790" data-type="bar" data-line-color="#eeb269" data-neg-color="#dc5753" data-height="30" data-bar-width="2">
+                    <span class="sparklines"
+                          data-values="670,350,135,-170,-324,-386,-468,-200,55,375,520,270,790,-670,-350,135,170,324,386,468,10,55,375,520,270,790"
+                          data-type="bar" data-line-color="#eeb269" data-neg-color="#dc5753" data-height="30"
+                          data-bar-width="2">
 								</span>
 
                 </h3>
@@ -51,7 +54,10 @@
                     <sup>Yesterday Earn: </sup>
                     $4,000
 
-                    <span class="sparklines" data-values="670,350,135,-170,-324,386,-468,-10,55,375,520,-270,790,670,-350,135,170,324,386,468,10,-55,-375,-520,270,790" data-type="bar" data-line-color="#4db19e" data-neg-color="#007ebd" data-height="30" data-bar-width="2">
+                    <span class="sparklines"
+                          data-values="670,350,135,-170,-324,386,-468,-10,55,375,520,-270,790,670,-350,135,170,324,386,468,10,-55,-375,-520,270,790"
+                          data-type="bar" data-line-color="#4db19e" data-neg-color="#007ebd" data-height="30"
+                          data-bar-width="2">
 								</span>
                 </h3>
 
@@ -65,9 +71,9 @@
             <div class="col-lg-3 col-sm-6">
 
                 <div class="teaser warning_bg_color counter-background-teaser text-center">
-                    <span class="counter counter-background" data-from="0" data-to="1257" data-speed="2100">0</span>
-                    <h3 class="counter highlight" data-from="0" data-to="1257" data-speed="2100">0</h3>
-                    <p>Reviews / Month</p>
+                    <span class="counter counter-background" data-from="0" data-to="<?= count($users) ?>" data-speed="2100">0</span>
+                    <h3 class="counter highlight" data-from="0" data-to="<?= count($users) ?>" data-speed="2100">0</h3>
+                    <p>Total Member</p>
                 </div>
 
             </div>
@@ -75,9 +81,9 @@
             <div class="col-lg-3 col-sm-6">
 
                 <div class="teaser danger_bg_color counter-background-teaser text-center">
-                    <span class="counter counter-background" data-from="0" data-to="346" data-speed="1500">0</span>
-                    <h3 class="counter highlight" data-from="0" data-to="346" data-speed="1500">0</h3>
-                    <p>Clients / Month</p>
+                    <span class="counter counter-background" data-from="0" data-to="<?= count($posts) ?>" data-speed="1500">0</span>
+                    <h3 class="counter highlight" data-from="0" data-to="<?= count($posts) ?>" data-speed="1500">0</h3>
+                    <p>Total Post</p>
                 </div>
 
             </div>
@@ -85,9 +91,9 @@
             <div class="col-lg-3 col-sm-6">
 
                 <div class="teaser success_bg_color counter-background-teaser text-center">
-                    <span class="counter counter-background" data-from="0" data-to="216" data-speed="1900">0</span>
-                    <h3 class="counter highlight" data-from="0" data-to="216" data-speed="1900">0</h3>
-                    <p>Orders / Month</p>
+                    <span class="counter counter-background" data-from="0" data-to="<?= count($events) ?>" data-speed="1900">0</span>
+                    <h3 class="counter highlight" data-from="0" data-to="<?= count($events) ?>" data-speed="1900">0</h3>
+                    <p>Total Event</p>
                 </div>
 
             </div>
@@ -95,16 +101,23 @@
             <div class="col-lg-3 col-sm-6">
 
                 <div class="teaser info_bg_color counter-background-teaser text-center">
-                    <span class="counter counter-background" data-from="0" data-to="15" data-speed="1800">0</span>
-                    <h3 class="counter-wrap highlight" data-from="0" data-to="346" data-speed="1800">
-                        <small>$</small>
-                        <span class="counter" data-from="0" data-to="346" data-speed="1500">0</span>
-                        <small class="counter-add">k</small>
-                    </h3>
-                    <p>Total Profit</p>
+                    <span class="counter counter-background" data-from="0" data-to="<?= count($faqs) ?>" data-speed="1900">0</span>
+                    <h3 class="counter highlight" data-from="0" data-to="<?= count($faqs) ?>" data-speed="1900">0</h3>
+                    <p>Total Faq</p>
                 </div>
 
             </div>
+
+            <!--<div class="col-lg-3 col-sm-6">
+
+                <div class="teaser info_bg_color counter-background-teaser text-center">
+                    <span class="counter counter-background" data-from="0" data-to="15" data-speed="1800">0</span>
+                    <h3 class="counter-wrap highlight" data-from="0" data-to="346" data-speed="1800">
+                    </h3>
+                    <p>Total Faq</p>
+                </div>
+
+            </div>-->
         </div>
 
         <div class="row">
@@ -170,7 +183,8 @@
                                             <small>2 hours ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis.
+                                            Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +211,9 @@
                                             <small>5 hours ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque
+                                            dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus
+                                            illo.
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +240,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +269,8 @@
                                             <small>2 hours ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis.
+                                            Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
                                         </div>
                                     </div>
                                 </div>
@@ -278,7 +297,9 @@
                                             <small>5 hours ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque
+                                            dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus
+                                            illo.
                                         </div>
                                     </div>
                                 </div>
@@ -305,7 +326,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -352,7 +375,8 @@
                                         </h5>
                                         <div>
                                             <h6>Order Comment:</h6>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis.
+                                            Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
                                         </div>
                                     </div>
                                 </div>
@@ -408,7 +432,9 @@
                                         </h5>
                                         <div>
                                             <h6>Order Comment:</h6>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -438,7 +464,8 @@
                                         </h5>
                                         <div>
                                             <h6>Order Comment:</h6>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis.
+                                            Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
                                         </div>
                                     </div>
                                 </div>
@@ -494,7 +521,9 @@
                                         </h5>
                                         <div>
                                             <h6>Order Comment:</h6>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -725,7 +754,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum,
+                                                    corporis. Voluptatibus odio perspiciatis non quisquam provident,
+                                                    quasi eaque officia.
                                                 </p>
                                                 <p class="warning_color">
                                                     Pending
@@ -757,7 +788,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                                                    itaque dolor laboriosam dolores magnam mollitia, voluptatibus
+                                                    inventore accusamus illo.
                                                 </p>
                                                 <p class="danger_color">
                                                     Rejected
@@ -789,7 +822,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
+                                                    esse, magni aliquam quisquam modi delectus veritatis est ut culpa
+                                                    minus repellendus.
                                                 </p>
                                                 <p class="warning_color">
                                                     Pending
@@ -821,7 +856,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum,
+                                                    corporis. Voluptatibus odio perspiciatis non quisquam provident,
+                                                    quasi eaque officia.
                                                 </p>
                                                 <p class="danger_color">
                                                     Rejected
@@ -853,7 +890,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                                                    itaque dolor laboriosam dolores magnam mollitia, voluptatibus
+                                                    inventore accusamus illo.
                                                 </p>
                                                 <p class="warning_color">
                                                     Pending
@@ -885,7 +924,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
+                                                    esse, magni aliquam quisquam modi delectus veritatis est ut culpa
+                                                    minus repellendus.
                                                 </p>
                                                 <p class="warning_color">
                                                     Pending
@@ -926,7 +967,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                                                    itaque dolor laboriosam dolores magnam mollitia, voluptatibus
+                                                    inventore accusamus illo.
                                                 </p>
                                                 <p class="info_color">
                                                     Approved
@@ -958,7 +1001,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum,
+                                                    corporis. Voluptatibus odio perspiciatis non quisquam provident,
+                                                    quasi eaque officia.
                                                 </p>
                                                 <p class="success_color">
                                                     Replied
@@ -990,7 +1035,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
+                                                    esse, magni aliquam quisquam modi delectus veritatis est ut culpa
+                                                    minus repellendus.
                                                 </p>
                                                 <p class="info_color">
                                                     Pending
@@ -1022,7 +1069,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum,
+                                                    corporis. Voluptatibus odio perspiciatis non quisquam provident,
+                                                    quasi eaque officia.
                                                 </p>
                                                 <p class="success_color">
                                                     Approved
@@ -1054,7 +1103,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                                                    itaque dolor laboriosam dolores magnam mollitia, voluptatibus
+                                                    inventore accusamus illo.
                                                 </p>
                                                 <p class="info_color">
                                                     Approved
@@ -1086,7 +1137,9 @@
                                             </h5>
                                             <div>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore,
+                                                    esse, magni aliquam quisquam modi delectus veritatis est ut culpa
+                                                    minus repellendus.
                                                 </p>
                                                 <p class="info_color">
                                                     Replied
@@ -1127,7 +1180,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -1141,7 +1196,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                     <div class="media-right">
@@ -1160,7 +1217,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -1174,7 +1233,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                     <div class="media-right">
@@ -1193,7 +1254,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                 </div>
@@ -1207,7 +1270,9 @@
                                             <small>1 day ago</small>
                                         </h5>
                                         <div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse,
+                                            magni aliquam quisquam modi delectus veritatis est ut culpa minus
+                                            repellendus.
                                         </div>
                                     </div>
                                     <div class="media-right">
@@ -1264,19 +1329,23 @@
                                 4,583
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,450,135,-170,-324,-386,-168,-10,55,375,520,270,490" data-type="bar" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines"
+                                                  data-values="170,450,135,-170,-324,-386,-168,-10,55,375,520,270,490"
+                                                  data-type="bar" data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 235
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,450,135" data-type="pie" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines" data-values="170,450,135" data-type="pie"
+                                                  data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <a class="settings-button" id="map-data-1" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="settings-button" id="map-data-1" data-target="#" href="#"
+                                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-cog"></i>
                                     </a>
 
@@ -1312,19 +1381,23 @@
                                 7,934
                             </td>
                             <td>
-											<span class="sparklines" data-values="200,150,735,70,158,386,68,130,155,475,520,370,490" data-type="bar" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines"
+                                                  data-values="200,150,735,70,158,386,68,130,155,475,520,370,490"
+                                                  data-type="bar" data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 235
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,135" data-type="pie" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines" data-values="170,135" data-type="pie"
+                                                  data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <a class="settings-button" id="map-data-2" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="settings-button" id="map-data-2" data-target="#" href="#"
+                                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-cog"></i>
                                     </a>
 
@@ -1360,19 +1433,23 @@
                                 3,656
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,450,135,870,824,386,868,810,55,375,520,270,490" data-type="bar" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines"
+                                                  data-values="170,450,135,870,824,386,868,810,55,375,520,270,490"
+                                                  data-type="bar" data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 235
                             </td>
                             <td>
-											<span class="sparklines" data-values="770,250,135" data-type="pie" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines" data-values="770,250,135" data-type="pie"
+                                                  data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <a class="settings-button" id="map-data-3" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="settings-button" id="map-data-3" data-target="#" href="#"
+                                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-cog"></i>
                                     </a>
 
@@ -1408,19 +1485,23 @@
                                 1,516
                             </td>
                             <td>
-											<span class="sparklines" data-values="670,350,135,-170,-324,-386,-468,-10,55,375,520,270,790" data-type="bar" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines"
+                                                  data-values="670,350,135,-170,-324,-386,-468,-10,55,375,520,270,790"
+                                                  data-type="bar" data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 235
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,450" data-type="pie" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines" data-values="170,450" data-type="pie"
+                                                  data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <a class="settings-button" id="map-data-4" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="settings-button" id="map-data-4" data-target="#" href="#"
+                                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-cog"></i>
                                     </a>
 
@@ -1455,19 +1536,23 @@
                                 2,018
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,450,135,870,824,386,418,510,55,375,520,270,190" data-type="bar" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines"
+                                                  data-values="170,450,135,870,824,386,418,510,55,375,520,270,190"
+                                                  data-type="bar" data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 235
                             </td>
                             <td>
-											<span class="sparklines" data-values="170,450,135" data-type="pie" data-line-color="#007ebd" data-height="20">
+											<span class="sparklines" data-values="170,450,135" data-type="pie"
+                                                  data-line-color="#007ebd" data-height="20">
 											</span>
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <a class="settings-button" id="map-data-5" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="settings-button" id="map-data-5" data-target="#" href="#"
+                                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-cog"></i>
                                     </a>
 
@@ -1497,9 +1582,9 @@
                             <td colspan="6">
                                 <ul class="pagination highlightlinks">
                                     <li class="disabled">
-													<span>
-														<i class="fa fa-angle-left"></i>
-													</span>
+                                        <span>
+                                            <i class="fa fa-angle-left"></i>
+                                        </span>
                                     </li>
                                     <li class="active"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -1567,4 +1652,23 @@
 <?= $this->section('backend_script') ?>
 <!-- dashboard init -->
 <script src="<?= base_url('assets/js/admin.js') ?>"></script>
+<script>
+    jQuery('.events_calendar').fullCalendar(
+
+        {
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listWeek'
+            },
+            defaultDate: '2021-11-12',
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            navLinks: true,
+            aspectRatio: 1,
+            events: <?php echo $calendar_view;?>
+        }
+
+    );
+</script>
 <?= $this->endSection() ?>

@@ -1,4 +1,6 @@
 
+<?= $this->extend('template/header') ?>
+<?= $this->section('frontend_content') ?>
 <!-- template sections -->
 <section class="ls section_padding_top_100 section_padding_bottom_100 section_full_height">
     <div class="container">
@@ -95,3 +97,12 @@
     </div>
     <!-- .container -->
 </section>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('frontend_css') ?>
+
+<?= $this->endSection() ?>
+<?= $this->section('frontend_script') ?>
+
+<?= $this->endSection() ?>

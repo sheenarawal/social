@@ -6,8 +6,6 @@
 <html class="no-js">
 <!--<![endif]-->
 
-
-<!-- Mirrored from html.modernwebtemplates.com/social-activism/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 08:40:44 GMT -->
 <head>
     <title>Social Activism</title>
     <meta charset="utf-8">
@@ -30,7 +28,7 @@
     <script src="<?= base_url('assets/js/vendor/respond.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/vendor/jquery-1.12.4.min.js') ?>"></script>
     <![endif]-->
-
+    <?= $this->renderSection('frontend_css') ?>
 </head>
 
 <body>
@@ -62,7 +60,6 @@
 <!-- Unyson messages modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
     <div class="fw-messages-wrap ls with_padding">
-        <!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
 
         <!--
     <ul class="list-unstyled">
@@ -73,9 +70,32 @@
     </div>
 </div>
 <!-- eof .modal -->
-
-<!-- wrappers for visual page editor and boxed version of template -->
 <div id="canvas">
     <div id="box_wrapper">
 
+        <?php if (uri_string() != 'login' && uri_string() != 'signup'){?>
+        <?= view('template/navbar') ?>
+        <?php } ?>
 
+
+        <?= $this->renderSection('frontend_content') ?>
+
+
+        <?php if (uri_string() != 'login' && uri_string() != 'signup'){?>
+        <?= view('template/footer') ?>
+        <?php }?>
+
+        <?= view('template/copyright') ?>
+    </div>
+    <!-- eof #box_wrapper -->
+</div>
+<!-- eof #canvas -->
+
+<script src="<?= base_url('assets/js/compressed.js') ?>"></script>
+<script src="<?= base_url('assets/js/main.js') ?>"></script>
+
+<?= $this->renderSection('frontend_script') ?>
+
+</body>
+
+</html>

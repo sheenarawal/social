@@ -39,8 +39,8 @@
                                     Profile
                                 </a>
                             </li>
-                            <li class="<?= route_to('payment.view')?>">
-                                <a href="">
+                            <li>
+                                <a href="<?= route_to('backend.member.editProfile',$auth['id'])?>">
                                     <i class="fa fa-edit"></i>
                                     Edit Profile
                                 </a>

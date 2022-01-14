@@ -82,6 +82,10 @@
                             </li>
 
                             <li>
+                                <a href="<?= route_to('frontend.gallery') ?>">Gallery</a>
+                            </li>
+
+                            <li>
                                 <a href="<?= route_to('frontend.contact') ?>">Contact</a>
                             </li>
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Gallery;
 use App\Models\Posts;
 use App\Models\Faq;
 use App\Models\Event;
@@ -8,18 +9,18 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 
 class Home extends BaseController
 {
+    protected $pager;
+
     function __construct() {
-        //parent::__construct();
-        // Load url helper
-        //$this->load->helper('url');
+        $this->pager = service('pager');
     }
 
     public function index()
     {
         $postModel = new Posts();
         $eventModel = new Event();
-        $posts = $postModel->where('status',1)->paginate(5);;
-        $events = $eventModel->where('status',1)->paginate(4);
+        $posts = $postModel->where('status',1)->orderBy('id','desc')->paginate(5);
+        $events = $eventModel->where('status',1)->orderBy('id','desc')->paginate(4);
         return  view('pages/index',compact('posts','events'));
     }
     public function about()
@@ -64,6 +65,13 @@ class Home extends BaseController
         $events = $data->paginate($show?$show:2);
         $pager = $model->pager;
         return  view('pages/events',compact('events','pager'));
+    }
+    public function gallery()
+    {
+        $galleryModel = new Gallery();
+        $gallery = $galleryModel->paginate(12);
+        $pager =  $galleryModel->pager;
+        return  view('pages/gallery',compact('gallery','pager'));
     }
     public function home()
     {

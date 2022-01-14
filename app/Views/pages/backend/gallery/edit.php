@@ -48,7 +48,7 @@
                         </h4>
                         <hr>
                         <div class="row form-group <?php if(session('errors.title')) : ?> has-error<?php endif ?>">
-                            <label class="col-lg-3 control-label" for="title">Image title: </label>
+                            <label class="col-lg-3 control-label" for="title">Image Title: </label>
                             <div class="col-lg-9">
                                 <input type="text" class="form-control" id="title" name="title" value="<?= esc($image['title']) ?>" required>
                                 <?php if(session('errors.title')) { ?>
@@ -58,32 +58,10 @@
                                 <?php }?>
                             </div>
                         </div>
-                        <div class="row form-group <?php if(session('errors.slug')) : ?> has-error<?php endif ?>">
-                            <label class="col-lg-3 control-label" for="slug">Image slug: </label>
+                        <div class="row hidden form-group <?php if(session('errors.category')) : ?> has-error<?php endif ?>">
+                            <label class="col-lg-3 control-label" for="category">Image Category: </label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control" id="slug" name="slug" value="<?= esc($image['slug'])?>" required>
-                                <?php if(session('errors.slug')) { ?>
-                                    <div class='text-danger'>
-                                        <?= session('errors.slug') ?>
-                                    </div>
-                                <?php }?>
-                            </div>
-                        </div>
-                        <div class="row form-group <?php if(session('errors.address')) : ?> has-error<?php endif ?>">
-                            <label class="col-lg-3 control-label" for="tag">Image Tags: </label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control" name="tag" id="tag" value="<?= esc($image['tag'])?>" required>
-                                <?php if(session('errors.tag')) { ?>
-                                    <div class='text-danger'>
-                                        <?= session('errors.tag') ?>
-                                    </div>
-                                <?php }?>
-                            </div>
-                        </div>
-                        <div class="row form-group <?php if(session('errors.category')) : ?> has-error<?php endif ?>">
-                            <label class="col-lg-3 control-label" for="tag">Image Category: </label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control" name="category" id="category" value="<?= esc($image['category'])?>" required>
+                                <input type="text" class="form-control" id="category" name="category" value="<?= esc($image['category']) ?>" required>
                                 <?php if(session('errors.category')) { ?>
                                     <div class='text-danger'>
                                         <?= session('errors.category') ?>
@@ -91,7 +69,19 @@
                                 <?php }?>
                             </div>
                         </div>
-                        <div class="row form-group <?php if(session('errors.description')) : ?> has-error<?php endif ?>">
+                        <div class="row form-group <?php if(session('errors.media')) : ?> has-error<?php endif ?>">
+                            <label class="col-lg-3 control-label" for="media">Image: </label>
+                            <div class="col-lg-9">
+                                <input type="file" class="form-control" id="media" name="media" value="<?= esc($image['media']) ?>" >
+                                <?php if(session('errors.media')) { ?>
+                                    <div class='text-danger'>
+                                        <?= session('errors.media') ?>
+                                    </div>
+                                <?php }?>
+                            </div>
+                        </div>
+
+                        <div class="row hidden form-group <?php if(session('errors.description')) : ?> has-error<?php endif ?>">
                             <label class="col-lg-3 control-label" for="description">Image content: </label>
                             <div class="col-lg-9">
                                 <textarea rows="8" class="form-control" name="description" id="description"><?= esc($image['description'])?></textarea>
@@ -114,52 +104,6 @@
                 </div>
                 <!-- .col-* -->
                 <div class="col-md-4">
-                    <div class="with_border with_padding bottommargin_10">
-                        <h4>Image Meta</h4>
-                        <hr>
-                        <div class="row form-group <?php if(session('errors.publish_date')) : ?> has-error<?php endif ?>">
-                            <label class="col-lg-3 control-label" for="publish_date">Publish date: </label>
-                            <div class="col-lg-9">
-                                <input type="date" class="form-control" name="publish_date" id="publish_date" value="<?=  esc($image['publish_date'])? esc($image['publish_date']):date('Y-m-d') ?>" required>
-                                <?php if(session('errors.publish_date')) { ?>
-                                    <div class='text-danger'>
-                                        <?= session('errors.publish_date') ?>
-                                    </div>
-                                <?php }?>
-                            </div>
-                        </div>
-                        <div class="row form-group <?php if(session('errors.publish_time')) : ?> has-error<?php endif ?>">
-                            <label class="col-lg-3 control-label" for="publish_time">Publish time: </label>
-                            <div class="col-lg-9">
-                                <input type="time" class="form-control" name="publish_time" id="publish_time" value="<?=  esc($image['publish_time'])? esc($image['publish_time']):date('h:i:s') ?>" required>
-                                <?php if(session('errors.publish_time')) { ?>
-                                    <div class='text-danger'>
-                                        <?= session('errors.publish_time') ?>
-                                    </div>
-                                <?php }?>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <label class="col-lg-3 control-label">Status: </label>
-                            <div class="col-lg-9">
-                                <label class="radio-inline" for="status1">
-                                    <input type="radio" name="status" id="status1" value="0" checked="<?= esc($image['status'])== 0?'checked':'' ?>"> Draft
-                                </label>
-                                <label class="radio-inline" for="status2">
-                                    <input type="radio" name="status" id="status2" value="1" <?= esc($image['status'])== 1?'checked':'' ?>> Published
-                                </label>
-                                <?php if(session('errors.status')) { ?>
-                                    <div class='text-danger'>
-                                        <?= session('errors.status') ?>
-                                    </div>
-                                <?php }?>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <!-- .with_border -->
 
                     <div class="with_border with_padding">
 
@@ -182,16 +126,6 @@
                                     <i class="fa fa-trash-o"></i>
                                 </a>
                             </div>
-                        </div>
-
-                        <div class="form-group <?php if(session('errors.media')) : ?> has-error<?php endif ?>">
-                            <label class="control-label" for="media">Image Media: </label>
-                            <input type="file" class="form-control" name="media" id="media" >
-                            <?php if(session('errors.media')) { ?>
-                                <div class='text-danger'>
-                                    <?= session('errors.media') ?>
-                                </div>
-                            <?php }?>
                         </div>
 
                     </div>

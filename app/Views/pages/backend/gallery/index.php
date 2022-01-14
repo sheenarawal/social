@@ -107,10 +107,9 @@
                                 <th class="media-middle text-center">
                                     <input type="checkbox">
                                 </th>
+                                <th>Image:</th>
                                 <th>Title:</th>
-                                <th>Categories:</th>
-                                <th>Tag:</th>
-                                <th>Date:</th>
+                                <th class="hidden">Category:</th>
                                 <th>Status:</th>
                                 <th>Action:</th>
                             </tr>
@@ -119,6 +118,9 @@
                                 <td class="media-middle text-center">
                                     <input type="checkbox">
                                 </td>
+                                <td class="media-middle text-center">
+                                    <img class="img-responsive" src="<?= base_url('uploads/'.$data['media'])?>" alt="/" style="max-height: 125px;max-width: 125px"/>
+                                </td>
                                 <td class="media-middle">
                                     <h5>
                                         <a href="<?=route_to('backend.gallery.edit',$data['id']) ?>">
@@ -126,17 +128,10 @@
                                         </a>
                                     </h5>
                                 </td>
-                                <td class="media-middle">
-                                    <?= $data['category']?>
-                                </td>
-                                <td class="media-middle">
-                                    <?= $data['tag']?>
-                                </td>
-                                <td class="media-middle">
-                                    <time datetime="2017-02-08T20:25:23+00:00" class="entry-date">
-                                        <?= $data['publish_date']?> at
-                                        <?= $data['publish_time']?>
-                                    </time>
+                                <td class="media-middle hidden">
+                                    <h6>
+                                        <?= $data['category']?>
+                                    </h6>
                                 </td>
                                 <td class="media-middle">
                                     <?= $data['status'] == 1?'Published':'Draft'?>

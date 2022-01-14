@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://social.local/';
+    public $baseURL = 'http://cisocial.local/';
 
     /**
      * --------------------------------------------------------------------------

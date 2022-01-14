@@ -1,77 +1,84 @@
-<section class="page_breadcrumbs cs gradient2 parallax section_padding_top_50 section_padding_bottom_50">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12 text-center">
-							<h2>Gallery</h2>
-							<ol class="breadcrumb darklinks">
-								<li>
-									<a href="/">
-							Home
-						</a>
-								</li>
-								<li class="active">Gallery</li>
-							</ol>
-						</div>
-					</div>
-				</div>
-			</section>
+<?= $this->extend('template/header') ?>
+<?= $this->section('frontend_content') ?>
 
 
-			<section class="ls page_portfolio section_padding_top_130 section_padding_bottom_130">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="filters isotope_filters darklinks">
-								<a href="#" class="selected" data-filter="*">All</a>
-								<?php foreach($gallery as $data){ ?>
-								<a href="#" data-filter=".<?php echo preg_replace('/[^A-Za-z0-9-]+/', '-', $data['category']); ?>"><?php echo $data['category']; ?></a>
-								<?php } ?>
-							</div>
-							<?php foreach($gallery as $image){ ?>
-							<div class="isotope_container isotope row masonry-layout columns_margin_bottom_20" data-filters=".isotope_filters">
-								<div class="isotope-item col-lg-4 col-md-6 col-sm-12 <?php echo preg_replace('/[^A-Za-z0-9-]+/', '-', $image['category']); ?>">
-									<article class="vertical-item content-padding post format-standard with_border rounded text-center">
-
-										<div class="item-media">
-
-											<img src="uploads/<?php echo $image['media']; ?>" alt="">
-
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="p-view prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="images/gallery/<?php echo $image['media']; ?>"></a>
-												</div>
-											</div>
-										</div>
-
-										<div class="item-content">
-											<header class="entry-header">
-												<p class="categories-links small-text">
-								<a href="#"><?php echo $image['category']; ?></a>
-							</p>
-												<h4 class="entry-title">
-													<a href="gallery-single.html" rel="bookmark">
-									<?php echo $image['title']; ?>
-								</a>
-												</h4>
-											</header>
-											<p>
-							<?php echo $image['description']; ?>
-						</p>
-										</div>
-
-									</article>
-								</div>
-								<?php } ?>
-							</div>
+    <section class="page_breadcrumbs cs gradient2 parallax section_padding_top_50 section_padding_bottom_50">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2>About</h2>
+                    <ol class="breadcrumb darklinks">
+                        <li>
+                            <a href="index-2.html">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Pages</a>
+                        </li>
+                        <li class="active">About</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-							<div class="row">
-								<div class="col-sm-12 text-center">
-									<img src="img/loading.png" alt="" class="fa-spin" />
-								</div>
-							</div>
+<section class="ls page_portfolio section_padding_top_130 section_padding_bottom_130">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
 
-						</div>
-					</div>
-				</div>
-			</section>
+                <div class="filters hidden isotope_filters darklinks">
+                    <a href="#" class="selected" data-filter="*">All</a>
+                    <a href="#" data-filter=".activism">Activism</a>
+                    <a href="#" data-filter=".events">Events</a>
+                    <a href="#" data-filter=".projects">Projects</a>
+                    <a href="#" data-filter=".participants">Participants</a>
+                </div>
+
+                <div class="isotope_container isotope row masonry-layout columns_margin_bottom_20" data-filters=".isotope_filters">
+                    <?php foreach ($gallery as $item):?>
+                    <div class="isotope-item col-lg-4 col-md-6 col-sm-12 activism">
+                        <div class="vertical-item gallery-item content-absolute text-center ds">
+                            <div class="item-media">
+                                <img src="<?= base_url('uploads/'.$item['media'])?>" alt="">
+                                <div class="media-links">
+                                    <div class="links-wrap">
+                                        <a class="p-view prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="<?= base_url('uploads/'.$item['media'])?>"></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-content darken_gradient">
+                                <h4 class="poppins">
+                                    <a href="gallery-single.html"><?= $item['title'] ?></a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach;?>
+                </div>
+                <!-- eof .isotope_container.row -->
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <?= $pager->links() ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<?= $this->endSection() ?>
+
+<?= $this->section('frontend_css') ?>
+
+<?= $this->endSection() ?>
+<?= $this->section('frontend_script') ?>
+    <script src="<?= base_url('assets/js/switcher.js') ?>"></script>
+<?= $this->endSection() ?>

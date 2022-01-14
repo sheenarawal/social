@@ -28,7 +28,7 @@ class GalleryController extends BaseController
         $model = new Gallery();
         $data = $model;
         if ($search){
-            $data =$model->where("(title LIKE '%".$search."%' OR publish_date LIKE '%".$search."%' OR category LIKE '%".$search."%')", NULL, FALSE);
+            $data =$model->where("(title LIKE '%".$search."%')", NULL, FALSE);
             //$data =$model->orLike('title',$search)->orLike('publish_date',$search)->orLike('category',$search);
         }
         $gallery = $data->paginate($show?$show:10);
@@ -54,17 +54,12 @@ class GalleryController extends BaseController
             $galleryModal = new Gallery();
             $data = [
                 'title'      => $this->request->getVar('title'),
-                'slug'      => str_replace(' ','_',$this->request->getVar('slug')),
+                'slug'      => str_replace(' ','_',$this->request->getVar('title')),
                 'category'      => $this->request->getVar('category'),
-                'tag'      => $this->request->getVar('tag'),
-                'publish_date'      => $this->request->getVar('publish_date'),
-                'publish_time'      => $this->request->getVar('publish_time'),
-                'description'      => $this->request->getVar('description'),
                 'media'      => $media ?$media->getName():'',
-                'status'      => $this->request->getVar('status'),
             ];
             $galleryModal->save($data);
-            return redirect()->route('backend.gallery.index')->with('success','Gallery Image created successfully');
+            return redirect()->route('backend.gallery.index')->with('success','Gallery Image Add successfully');
         }
         return redirect()->back()->withInput()->with('errors',$this->validator->getErrors());
     }
@@ -80,14 +75,7 @@ class GalleryController extends BaseController
     {
         $data = [
             'title'        => 'required|min_length[5]|max_length[190]|',
-            'slug'         => 'required|min_length[5]|max_length[190]|',
-            'category'     => 'required|min_length[5]|max_length[190]|',
-            'tag'          => 'required|min_length[5]|max_length[190]|',
-            'publish_date'      => 'required|min_length[5]|max_length[190]|',
-            'publish_time'      => 'required|min_length[5]|max_length[190]|',
             'media'        => 'permit_empty|uploaded[media]|mime_in[media,image/jpg,image/jpeg,image/png]|max_size[media,1024]',
-            'description'       => 'required|min_length[5]',
-            'status'       => 'required',
         ];
         return $data;
     }
@@ -107,14 +95,9 @@ class GalleryController extends BaseController
             }
             $data = [
                 'title'       => $this->request->getVar('title'),
-                'slug'        => str_replace(' ','_',$this->request->getVar('slug')),
-                'category'    => $this->request->getVar('category'),
-                'tag'         => $this->request->getVar('tag'),
-                'publish_date'   => $this->request->getVar('publish_date'),
-                'publish_time'   => $this->request->getVar('publish_time'),
-                'description'    => $this->request->getVar('description'),
-                'media'       => $media ?$media->getName():'',
-                'status'      => $this->request->getVar('status'),
+                'slug'        => str_replace(' ','_',$this->request->getVar('title')),
+                'category'       => $this->request->getVar('category'),
+                'media'       => $photo_name,
             ];
             $postModal->update($id,$data);
             return redirect()->route('backend.gallery.index')->with('success','Gallery Image updated successfully');
